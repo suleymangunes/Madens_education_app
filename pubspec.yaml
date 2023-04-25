@@ -85,16 +85,16 @@ flutter_icons:
 
 # flutter_native_splash-development.yaml
 flutter_native_splash:
-  color: "#dcd5cd"
-  image: assets/logo/logo.png
-  color_dark: "#1b1106"
-  image_dark: assets/logo/logo_dark.png
+  color: "#fafafa"
+  image: assets/icon/icon.png
+  color_dark: "#121212"
+  image_dark: assets/icon/icon.png
 
   android_12:
-    image: assets/logo/logo.png
-    icon_background_color: "#dcd5cd"
-    image_dark: assets/logo/logo_dark.png
-    icon_background_color_dark: "#1b1106"
+    image: assets/icon/icon.png
+    icon_background_color: "#fafafa"
+    image_dark: assets/icon/icon.png
+    icon_background_color_dark: "#121212"
 
   web: false
 

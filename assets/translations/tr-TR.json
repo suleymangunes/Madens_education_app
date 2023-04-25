@@ -1,0 +1,16 @@
+{
+    "settingTitle": "Ayarlar",
+    "theme": "Tema",
+    "appLang": "Uygulama Dili",
+    "themeChoose": "Tema Seç",
+    "default": "Sistem Teması",
+    "light": "Aydınlık",
+    "dark": "Karanlık",
+    "cancel": "Vazgeç",
+    "ok": "Tamam",
+    "langChoose": "Dili Seç",
+    "skip": "Geç",
+    "done": "Başla",
+    "introTitleFirst": "Tanıtım Bayfası Başlığı",
+    "introDescriptionFirst": "Uygulamaya hoşgeldin! Bu nasıl çalıştığıyla ilgili açıklamadır."
+}

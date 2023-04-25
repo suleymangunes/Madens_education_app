@@ -8,7 +8,7 @@
 PRODUCT_NAME = education_app_like_udemy
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.educationAppLikeUdemy
+PRODUCT_BUNDLE_IDENTIFIER = com.example.basicRequirementsPackage
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2023 com.example. All rights reserved.

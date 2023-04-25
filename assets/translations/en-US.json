@@ -1,0 +1,16 @@
+{
+    "settingTitle": "Settings",
+    "theme": "Theme",
+    "appLang": "App Language",
+    "themeChoose": "Choose Theme",
+    "default": "System Default",
+    "light": "Light",
+    "dark": "Dark",
+    "cancel": "Cancel",
+    "ok": "Ok",
+    "langChoose": "Choose Language",
+    "skip": "Skip",
+    "done": "Done",
+    "introTitleFirst": "Title of Introduction Page",
+    "introDescriptionFirst": "Welcome to the app! This is a description of how it works."
+}

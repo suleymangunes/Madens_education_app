@@ -1,16 +1,29 @@
 {
-    "settingTitle": "Ayarlar",
-    "theme": "Tema",
-    "appLang": "Uygulama Dili",
-    "themeChoose": "Tema Seç",
-    "default": "Sistem Teması",
-    "light": "Aydınlık",
-    "dark": "Karanlık",
-    "cancel": "Vazgeç",
-    "ok": "Tamam",
-    "langChoose": "Dili Seç",
-    "skip": "Geç",
-    "done": "Başla",
-    "introTitleFirst": "Tanıtım Bayfası Başlığı",
-    "introDescriptionFirst": "Uygulamaya hoşgeldin! Bu nasıl çalıştığıyla ilgili açıklamadır."
+    "intro" : {
+        "introTitleFirst": "Online Eğitim Platformu",
+        "introDescriptionFirst": "Yayınlanan yeni eklemelerle 100.000 çevrimiçi video kursu arasından seçim yap.",
+        "introTitleSecond": "Dünyanın Her Yerinden",
+        "introDescriptionSecon": "Dünyanın her yerindeki, tüm derslerdeki öğretmenlerle görüntülü görüşme yoluyla ders al!",
+        "introTitleThird": "Kursları Görmeye Hazır Mısın?",
+        "introDescriptionThird": "Çevrimiçi öğrenmeyi keşfet."
+    },
+    "button": {
+        "skip": "Geç",
+        "done": "Başla",
+        "cancel": "Vazgeç",
+        "ok": "Tamam"
+    },
+    "theme": {
+        "theme": "Tema",
+        "default": "Sistem Teması",
+        "light": "Aydınlık",
+        "dark": "Karanlık",
+        "themeChoose": "Tema Seç"
+    },
+    "localization": {
+        "appLang": "Uygulama Dili",
+        "langChoose": "Dili Seç"
+    },
+    "settingTitle": "Ayarlar"
+    
 }

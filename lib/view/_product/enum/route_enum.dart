@@ -1,6 +1,7 @@
 enum RouteEnum {
   intro,
   setting,
+  homePage,
 }
 
 extension RouteEnumString on RouteEnum {
@@ -10,6 +11,8 @@ extension RouteEnumString on RouteEnum {
         return '/intro';
       case RouteEnum.setting:
         return '/setting';
+      case RouteEnum.homePage:
+        return '/homePage';
     }
   }
 }

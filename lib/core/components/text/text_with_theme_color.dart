@@ -9,7 +9,7 @@ class TextMediumTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text.tr(),
-      style: Theme.of(context).textTheme.titleMedium,
+      style: Theme.of(context).textTheme.labelLarge,
     );
   }
 }

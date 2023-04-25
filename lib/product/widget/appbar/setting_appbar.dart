@@ -1,5 +1,5 @@
-import 'package:education_app_like_udemy/core/constants/string/string_constants.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:education_app_like_udemy/product/init/lang/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 
 class SettingAppbar extends StatelessWidget with PreferredSizeWidget {
@@ -11,7 +11,7 @@ class SettingAppbar extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: Text(
-        StringConstants.appTitle.tr(),
+        LocaleKeys.settingTitle.tr(),
         style: Theme.of(context).textTheme.headlineSmall,
       ),
     );

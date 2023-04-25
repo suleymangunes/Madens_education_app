@@ -13,7 +13,7 @@ class IntroCaching {
   static String initialIntro() {
     switch (_intro.get('introWatched')) {
       case true:
-        return RouteEnum.setting.rawValue;
+        return RouteEnum.homePage.rawValue;
       default:
         return RouteEnum.intro.rawValue;
     }

@@ -7,22 +7,15 @@ class DarkThemeCustom {
   late ThemeData theme;
 
   DarkThemeCustom() {
-    theme = ThemeData.dark().copyWith(
+    theme = ThemeData(
       //  CUSTOMIZE AREA
-      appBarTheme: const AppBarTheme(
+      brightness: Brightness.dark,
+      appBarTheme: AppBarTheme(
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: DarkThemeColors._appBarBackground,
           statusBarIconBrightness: Brightness.light,
         ),
         centerTitle: true,
-        color: DarkThemeColors._appBarBackground,
-        titleTextStyle: TextStyle(
-          color: Colors.white,
-        ),
-        iconTheme: IconThemeData(),
-      ),
-      iconTheme: const IconThemeData(
-        color: DarkThemeIcon._iconColor,
       ),
     );
   }

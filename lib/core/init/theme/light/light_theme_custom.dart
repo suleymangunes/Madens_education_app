@@ -1,3 +1,4 @@
+import 'package:education_app_like_udemy/core/init/theme/build-material-color/build_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -7,23 +8,16 @@ class LightThemeCustom {
   late ThemeData theme;
 
   LightThemeCustom() {
-    theme = ThemeData.light().copyWith(
-      //  CUSTOMIZE AREA
-      primaryColor: LightThemeColors._primaryColor,
+    theme = ThemeData(
+      //  CUSTOMIZE AREAss
+      brightness: Brightness.light,
+      primarySwatch: BuildColor().buildMaterialColor(LightThemeColors.scarlet),
       appBarTheme: const AppBarTheme(
         systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: LightThemeColors._appBarBackground,
+          statusBarColor: LightThemeColors.scarlet,
           statusBarIconBrightness: Brightness.dark,
         ),
         centerTitle: true,
-        color: LightThemeColors._appBarBackground,
-        titleTextStyle: TextStyle(
-          color: Colors.black,
-        ),
-        iconTheme: IconThemeData(),
-      ),
-      iconTheme: const IconThemeData(
-        color: LightThemeIcon._iconColor,
       ),
     );
   }

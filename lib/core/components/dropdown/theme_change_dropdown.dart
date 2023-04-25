@@ -2,6 +2,7 @@ import 'package:education_app_like_udemy/core/init/cubit/radio_cubit.dart';
 import 'package:education_app_like_udemy/core/init/cubit/theme_cubit.dart';
 import 'package:education_app_like_udemy/core/constants/string/string_constants.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:education_app_like_udemy/product/init/lang/locale_keys.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -37,7 +38,10 @@ class ThemeChangeDropdown extends StatelessWidget {
           context.read<RadioCubit>().changeValue(value.toString());
         },
       ),
-      title: const Text(StringConstants.sysDark).tr(),
+      title: Text(
+        LocaleKeys.themeDark,
+        style: Theme.of(context).textTheme.titleMedium,
+      ).tr(),
     );
   }
 
@@ -50,7 +54,10 @@ class ThemeChangeDropdown extends StatelessWidget {
           context.read<RadioCubit>().changeValue(value.toString());
         },
       ),
-      title: const Text(StringConstants.sysLight).tr(),
+      title: Text(
+        LocaleKeys.themeLight,
+        style: Theme.of(context).textTheme.titleMedium,
+      ).tr(),
     );
   }
 
@@ -63,7 +70,10 @@ class ThemeChangeDropdown extends StatelessWidget {
           context.read<RadioCubit>().changeValue(value.toString());
         },
       ),
-      title: const Text(StringConstants.sysDefault).tr(),
+      title: Text(
+        LocaleKeys.themeDefault,
+        style: Theme.of(context).textTheme.titleMedium,
+      ).tr(),
     );
   }
 
@@ -95,7 +105,10 @@ class ThemeChangeDropdown extends StatelessWidget {
             break;
         }
       },
-      child: const Text(StringConstants.ok).tr(),
+      child: Text(
+        LocaleKeys.buttonOk,
+        style: Theme.of(context).textTheme.labelLarge,
+      ).tr(),
     );
   }
 
@@ -104,7 +117,10 @@ class ThemeChangeDropdown extends StatelessWidget {
       onPressed: () {
         Navigator.pop(context);
       },
-      child: const Text(StringConstants.cancel).tr(),
+      child: Text(
+        LocaleKeys.buttonCancel,
+        style: Theme.of(context).textTheme.labelLarge,
+      ).tr(),
     );
   }
 }

@@ -17,7 +17,10 @@ class ChangerListtileWithDropdown extends StatelessWidget {
       },
       child: ListTile(
         leading: icon,
-        title: Text(title),
+        title: Text(
+          title,
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
       ),
     );
   }
@@ -26,7 +29,11 @@ class ChangerListtileWithDropdown extends StatelessWidget {
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(alertTitle, textAlign: TextAlign.center),
+        title: Text(
+          alertTitle,
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
         content: child,
       ),
     );

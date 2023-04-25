@@ -1,16 +1,29 @@
 {
-    "settingTitle": "Settings",
-    "theme": "Theme",
-    "appLang": "App Language",
-    "themeChoose": "Choose Theme",
-    "default": "System Default",
-    "light": "Light",
-    "dark": "Dark",
-    "cancel": "Cancel",
-    "ok": "Ok",
-    "langChoose": "Choose Language",
-    "skip": "Skip",
-    "done": "Done",
-    "introTitleFirst": "Title of Introduction Page",
-    "introDescriptionFirst": "Welcome to the app! This is a description of how it works."
+    "intro" : {
+        "introTitleFirst": "Online Learning Platform",
+        "introDescriptionFirst": "Choose from 100.000 online video courses with new additions published.",
+        "introTitleSecond": "Learn Online",
+        "introDescriptionSecon": "Via video call with the all subjects teacher in all around the world!",
+        "introTitleThird": "Ready to find a course?",
+        "introDescriptionThird": "Discover the online learning."
+    },
+    "button": {
+        "skip": "Skip",
+        "done": "Done",
+        "cancel": "Cancel",
+        "ok": "Ok"
+    },
+    "theme": {
+        "theme": "Theme",
+        "default": "System Default",
+        "light": "Light",
+        "dark": "Dark",
+        "themeChoose": "Choose Theme"
+    },
+    "localization": {
+        "appLang": "App Language",
+        "langChoose": "Choose Language"
+    },
+    "settingTitle": "Settings"
+    
 }

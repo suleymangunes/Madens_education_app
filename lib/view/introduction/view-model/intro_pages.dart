@@ -1,4 +1,4 @@
-import 'package:education_app_like_udemy/product/enum/intro_enums.dart';
+import 'package:education_app_like_udemy/product/enum/intro/intro_enums.dart';
 import 'package:education_app_like_udemy/product/init/lang/locale_keys.g.dart';
 import 'package:education_app_like_udemy/view/introduction/model/page_model.dart';
 import 'package:education_app_like_udemy/view/introduction/view/pages/first_page.dart';

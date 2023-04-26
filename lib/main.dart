@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:education_app_like_udemy/app.dart';
 import 'package:education_app_like_udemy/core/init/cache/onboarding/intro_caching.dart';
 import 'package:education_app_like_udemy/core/init/cubit/theme_cubit.dart';
@@ -5,6 +6,7 @@ import 'package:education_app_like_udemy/core/init/cache/theme/theme_caching.dar
 import 'package:education_app_like_udemy/core/init/localization/project_locales.dart';
 import 'package:education_app_like_udemy/cubit_observer.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:education_app_like_udemy/product/init/service/service_overrides.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,6 +17,7 @@ Future<void> main() async {
   await ThemeCaching.init();
   await IntroCaching.init();
   Bloc.observer = CubitObserver();
+  HttpOverrides.global = MyHttpOverrides();
 
   runApp(
     EasyLocalization(

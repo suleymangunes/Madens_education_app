@@ -1,4 +1,4 @@
-import 'package:education_app_like_udemy/view/_product/enum/route_enum.dart';
+import 'package:education_app_like_udemy/view/_product/enum/route/route_enum.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class IntroCaching {
@@ -13,7 +13,7 @@ class IntroCaching {
   static String initialIntro() {
     switch (_intro.get('introWatched')) {
       case true:
-        return RouteEnum.homePage.rawValue;
+        return RouteEnum.login.rawValue;
       default:
         return RouteEnum.intro.rawValue;
     }

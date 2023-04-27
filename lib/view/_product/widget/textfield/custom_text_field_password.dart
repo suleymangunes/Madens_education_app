@@ -9,7 +9,7 @@ class CustomTextFieldPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomTextField(
+    return CustomTextFieldForLoading(
       controller: passwordController,
       obscureText: true,
       label: StringConstants.password,

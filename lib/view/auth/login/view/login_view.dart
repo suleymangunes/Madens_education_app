@@ -1,6 +1,7 @@
-import 'package:education_app_like_udemy/core/extension/padding/padding_extension.dart';
-import 'package:education_app_like_udemy/core/extension/text/text_extension.dart';
+import 'package:education_app_like_udemy/core/components/text/title_spacing_with_padding.dart';
 import 'package:education_app_like_udemy/product/widget/text-button/text_button_medium_navigate_normal.dart';
+import 'package:education_app_like_udemy/view/_product/widget/animation/lottie_loading_button.dart';
+import 'package:education_app_like_udemy/view/auth/login/view-model/wait/waited_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:education_app_like_udemy/core/components/alert-dialog/error_alert_dialog.dart';
@@ -17,6 +18,7 @@ import 'package:education_app_like_udemy/view/_product/widget/textfield/custom_t
 import 'package:education_app_like_udemy/view/auth/login/view-model/login/login_cubit.dart';
 import 'package:education_app_like_udemy/view/auth/login/view-model/login/login_state.dart';
 import 'package:education_app_like_udemy/view/auth/login/view-model/validation/validation_cubit.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -86,9 +88,14 @@ class _LoginViewState extends State<LoginView> {
           CustomTextFieldPassword(passwordController: _passwordController),
           context.mediumSpace,
           _loginButton(context),
-          TextButtonMediumNavigateGoNormal(
-            path: RouteEnum.register.rawValue,
-            text: StringConstants.createAccount,
+          BlocBuilder<WaitedLoginCubit, bool>(
+            builder: (context, state) {
+              return TextButtonMediumNavigateGoNormal(
+                path: RouteEnum.register.rawValue,
+                text: StringConstants.createAccount,
+                wait: state,
+              );
+            },
           ),
         ],
       ),
@@ -101,7 +108,9 @@ class _LoginViewState extends State<LoginView> {
       child: ElevatedButton(
         style: const ElevatedButtonStyle(circularSize: 20).style,
         onPressed: () {
+          FocusManager.instance.primaryFocus?.unfocus();
           if (_formKey.currentState!.validate()) {
+            context.read<WaitedLoginCubit>().readOnlyTrue();
             context.read<LoginCubit>().login(email: _emailController.text, password: _passwordController.text);
           } else {
             context.read<ValidateCubit>().validateMode();
@@ -112,18 +121,13 @@ class _LoginViewState extends State<LoginView> {
           builder: (context, state) {
             switch (state.status) {
               case LoginEnum.initial:
-                return TitleSpacingWithPadding(
-                  padding: context.buttonTitlePadding,
-                  color: Colors.white,
-                  text: StringConstants.login,
-                  spacing: context.buttonTitleSpacing,
-                );
+                return const TitleSpacingWithPadding(text: StringConstants.login);
               case LoginEnum.loading:
-                return const CircularProgressIndicator(color: Colors.white);
+                return const LottieBigLoadingButton();
               case LoginEnum.completed:
-                return const Text("Success");
+                return const TitleSpacingWithPadding(text: StringConstants.login);
               case LoginEnum.error:
-                return const Text("Login");
+                return const TitleSpacingWithPadding(text: StringConstants.login);
             }
           },
         ),
@@ -133,74 +137,27 @@ class _LoginViewState extends State<LoginView> {
 
   void _loginListener(context, state) {
     if (state.status == LoginEnum.completed) {
-      NavigationRoute.goRouteNormal(RouteEnum.homePage.rawValue);
+      NavigationRoute.goRouteClear(RouteEnum.homePage.rawValue);
     } else if (state.status == LoginEnum.error) {
       if (state is ErrorLoginState) {
         final String message = state.errorMessage?.message ?? StringConstants.wentWrong;
-
         showDialog(
+          barrierDismissible: false,
           context: context,
           builder: (context) {
-            return ErrorAlertDialogGoBack(errorMessage: message, errorTitle: StringConstants.loginError);
+            return ErrorAlertDialog(
+              errorMessage: message,
+              errorTitle: StringConstants.loginError,
+              callback: changeReadOnlyForButton,
+            );
           },
         );
       }
     }
   }
-}
 
-class TextTitleLarge extends StatelessWidget {
-  const TextTitleLarge({super.key, required this.color, required this.text, this.spacing});
-  final Color color;
-  final String text;
-  final double? spacing;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-            color: color,
-          ),
-    );
-  }
-}
-
-class TestTitleLargeWithSpacing extends StatelessWidget {
-  const TestTitleLargeWithSpacing({super.key, required this.color, required this.text, required this.spacing});
-
-  final Color color;
-  final String text;
-  final double spacing;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextTitleLarge(
-      color: color,
-      text: text,
-      spacing: spacing,
-    );
-  }
-}
-
-class TitleSpacingWithPadding extends StatelessWidget {
-  const TitleSpacingWithPadding(
-      {super.key, required this.padding, required this.color, required this.text, required this.spacing});
-
-  final double padding;
-  final Color color;
-  final String text;
-  final double spacing;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(padding),
-      child: TestTitleLargeWithSpacing(
-        color: color,
-        text: text,
-        spacing: spacing,
-      ),
-    );
+  void changeReadOnlyForButton() {
+    context.read<WaitedLoginCubit>().readOnlyFalse();
+    GoRouter.of(context).pop();
   }
 }

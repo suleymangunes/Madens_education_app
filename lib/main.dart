@@ -7,6 +7,7 @@ import 'package:education_app_like_udemy/core/init/localization/project_locales.
 import 'package:education_app_like_udemy/cubit_observer.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:education_app_like_udemy/product/init/service/service_overrides.dart';
+import 'package:education_app_like_udemy/view/auth/login/view-model/wait/waited_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,8 +25,13 @@ Future<void> main() async {
       supportedLocales: LocaleVariables._localesList,
       path: LocaleVariables._localesPath,
       fallbackLocale: LocaleVariables._fallBackLocale,
-      child: BlocProvider(
-        create: (context) => ThemeCubit(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => ThemeCubit()),
+          BlocProvider(
+            create: (context) => WaitedLoginCubit(),
+          )
+        ],
         child: const MyApp(),
       ),
     ),

@@ -113,6 +113,7 @@ flutter:
     - assets/icon/
     - assets/translations/
     - assets/intro/
+    - assets/animation/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

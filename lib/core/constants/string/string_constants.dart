@@ -15,4 +15,5 @@ class StringConstants {
   static const String login = "Login";
   static const String wentWrong = "Something went wrong.";
   static const String pleaseTry = "Please try again";
+  static const String success = "Success";
 }

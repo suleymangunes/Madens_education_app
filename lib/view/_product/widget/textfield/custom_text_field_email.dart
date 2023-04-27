@@ -10,7 +10,7 @@ class CustomTextFieldEmail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomTextField(
+    return CustomTextFieldForLoading(
       controller: emailController,
       obscureText: false,
       label: StringConstants.email,

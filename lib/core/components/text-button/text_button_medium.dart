@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class TextButtonMedium extends StatelessWidget {
   const TextButtonMedium({super.key, required this.function, required this.text, required this.color});
 
-  final void Function() function;
+  final void Function()? function;
   final String text;
   final Color color;
 

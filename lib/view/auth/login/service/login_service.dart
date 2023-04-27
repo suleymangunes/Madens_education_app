@@ -15,6 +15,7 @@ class LoginService {
   }
 
   Future<LoginResponseModel> login() async {
+    await Future.delayed(const Duration(seconds: 5));
     var response = await http.post(
       Uri.parse(ApiService.accountLogin.pathValue),
       headers: ApiConstants.headerJson,

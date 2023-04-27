@@ -27,3 +27,7 @@ extension SizedSpaceBoxExtension on BuildContext {
   SizedBox get largeSpace => SizedBox(height: height * 0.08);
   SizedBox get bigSpace => SizedBox(height: height * 0.12);
 }
+
+extension LottieExtension on BuildContext {
+  double get bigTitleLottiSize => 44;
+}

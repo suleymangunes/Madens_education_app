@@ -1,5 +1,5 @@
 import 'package:education_app_like_udemy/core/extension/context/context_extension.dart';
-import 'package:education_app_like_udemy/view/introduction/view-model/intro_pages.dart';
+import 'package:education_app_like_udemy/view/auth/introduction/view-model/intro_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:lottie/lottie.dart';

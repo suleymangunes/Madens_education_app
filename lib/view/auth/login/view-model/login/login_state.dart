@@ -1,4 +1,5 @@
 import 'package:education_app_like_udemy/view/_product/enum/login/login_enum.dart';
+import 'package:education_app_like_udemy/view/auth/login/model/login_response_model.dart';
 
 abstract class ILoginState {
   final LoginEnum status;
@@ -20,5 +21,6 @@ class CompletedLoginState extends ILoginState {
 }
 
 class ErrorLoginState extends ILoginState {
-  ErrorLoginState() : super(status: LoginEnum.error);
+  final LoginResponseModel? errorMessage;
+  ErrorLoginState({required this.errorMessage}) : super(status: LoginEnum.error);
 }

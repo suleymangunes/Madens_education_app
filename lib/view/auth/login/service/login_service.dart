@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:education_app_like_udemy/product/constants/api/api_constants.dart';
 import 'package:education_app_like_udemy/product/enum/api/api_service.dart';
-import 'package:education_app_like_udemy/view/login/model/login_model.dart';
-import 'package:education_app_like_udemy/view/login/model/login_response_model.dart';
+import 'package:education_app_like_udemy/view/auth/login/model/login_model.dart';
+import 'package:education_app_like_udemy/view/auth/login/model/login_response_model.dart';
 import 'package:http/http.dart' as http;
 
 class LoginService {

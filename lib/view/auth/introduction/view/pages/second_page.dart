@@ -1,14 +1,14 @@
 import 'package:education_app_like_udemy/core/extension/context/context_extension.dart';
-import 'package:education_app_like_udemy/view/introduction/view-model/intro_pages.dart';
+import 'package:education_app_like_udemy/view/auth/introduction/view-model/intro_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:lottie/lottie.dart';
 
-class ThirdPage {
-  const ThirdPage._();
+class SecondPage {
+  const SecondPage._();
   static final PageViewModel page = PageViewModel(
     titleWidget: const PageContent(),
-    body: IntroPages.thirdPage.body,
+    body: IntroPages.secondPage.body,
   );
 }
 
@@ -24,10 +24,10 @@ class PageContent extends StatelessWidget {
       child: Column(
         children: [
           context.normalSpace,
-          Expanded(child: Lottie.asset(IntroPages.thirdPage.path)),
+          Expanded(child: Lottie.asset(IntroPages.secondPage.path)),
           context.normalSpace,
           Text(
-            IntroPages.thirdPage.title,
+            IntroPages.secondPage.title,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w600),
           ),
         ],

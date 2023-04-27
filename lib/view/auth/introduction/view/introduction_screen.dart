@@ -4,7 +4,7 @@ import 'package:education_app_like_udemy/core/init/cache/onboarding/intro_cachin
 import 'package:education_app_like_udemy/core/init/navigation/navigation_route.dart';
 import 'package:education_app_like_udemy/product/init/lang/locale_keys.g.dart';
 import 'package:education_app_like_udemy/view/_product/enum/route/route_enum.dart';
-import 'package:education_app_like_udemy/view/introduction/view-model/intro_pages.dart';
+import 'package:education_app_like_udemy/view/auth/introduction/view-model/intro_pages.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
 class Introduction {

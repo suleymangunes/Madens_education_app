@@ -23,8 +23,7 @@ extension SizedSpaceBoxExtension on BuildContext {
   SizedBox get space => SizedBox(height: height * 0.03);
   SizedBox get smallSpace => SizedBox(height: height * 0.01);
   SizedBox get xmallSpace => SizedBox(height: height * 0.00);
-
-  SizedBox get meidumSpace => SizedBox(height: height * 0.04);
+  SizedBox get mediumSpace => SizedBox(height: height * 0.04);
   SizedBox get largeSpace => SizedBox(height: height * 0.08);
   SizedBox get bigSpace => SizedBox(height: height * 0.12);
 }

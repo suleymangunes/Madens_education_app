@@ -142,6 +142,7 @@ class _LoginViewState extends State<LoginView> {
 
   void _loginListener(context, state) {
     if (state.status == LoginEnum.completed) {
+      // context.read<WaitedLoginCubit>().readOnlyFalse();
       if (state is CompletedLoginState) {
         LoginCaching.setToken(state.tokenData.data ?? "null");
         LoginCaching.signin();

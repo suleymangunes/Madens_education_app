@@ -14,6 +14,7 @@ class LoginCubit extends Cubit<ILoginState> {
         if (response.data == null) {
           emit(ErrorLoginState(errorMessage: response));
         } else {
+          LoginCaching.changeRole(role);
           emit(CompletedLoginState(tokenData: response));
         }
       } else if (role == "student") {

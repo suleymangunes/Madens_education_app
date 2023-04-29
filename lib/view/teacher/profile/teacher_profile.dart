@@ -7,8 +7,8 @@ import 'package:education_app_like_udemy/view/auth/login/view-model/wait/waited_
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ProfileView extends StatelessWidget {
-  const ProfileView({super.key});
+class TeacherProfile extends StatelessWidget {
+  const TeacherProfile({super.key});
 
   @override
   Widget build(BuildContext context) {

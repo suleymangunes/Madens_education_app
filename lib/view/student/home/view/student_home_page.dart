@@ -1,6 +1,6 @@
 import 'package:education_app_like_udemy/core/constants/icon/icon_constants.dart';
 import 'package:education_app_like_udemy/core/constants/string/string_constants.dart';
-import 'package:education_app_like_udemy/view/_product/screen-list/studen_screen_list.dart';
+import 'package:education_app_like_udemy/view/_product/screen-list/student/studen_screen_list.dart';
 import 'package:education_app_like_udemy/view/student/home/view-model/bottom-navbar/bottom_nav_index_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

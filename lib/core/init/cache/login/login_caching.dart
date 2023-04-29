@@ -39,6 +39,10 @@ class LoginCaching {
     _token.put('myToken', token);
   }
 
+  static void deleteToken() {
+    _token.put('myToken', "null");
+  }
+
   static void changeRole(String role) {
     _role.put('myRole', role);
   }

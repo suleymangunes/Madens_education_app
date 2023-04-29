@@ -13,8 +13,8 @@ import 'package:education_app_like_udemy/core/extension/context/context_extensio
 import 'package:education_app_like_udemy/core/init/navigation/navigation_route.dart';
 import 'package:education_app_like_udemy/view/_product/enum/login/login_enum.dart';
 import 'package:education_app_like_udemy/view/_product/enum/route/route_enum.dart';
-import 'package:education_app_like_udemy/view/_product/widget/textfield/custom_text_field_email.dart';
-import 'package:education_app_like_udemy/view/_product/widget/textfield/custom_text_field_password.dart';
+import 'package:education_app_like_udemy/view/_product/widget/textfield/login/custom_text_field_email.dart';
+import 'package:education_app_like_udemy/view/_product/widget/textfield/login/custom_text_field_password.dart';
 import 'package:education_app_like_udemy/view/auth/login/view-model/login/login_cubit.dart';
 import 'package:education_app_like_udemy/view/auth/login/view-model/login/login_state.dart';
 import 'package:education_app_like_udemy/view/auth/login/view-model/validation/validation_cubit.dart';

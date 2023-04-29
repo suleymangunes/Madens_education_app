@@ -1,6 +1,6 @@
 import 'package:education_app_like_udemy/core/init/cache/onboarding/intro_caching.dart';
 import 'package:education_app_like_udemy/view/_product/enum/route/route_enum.dart';
-import 'package:education_app_like_udemy/view/auth/register/view/register_view.dart';
+import 'package:education_app_like_udemy/view/auth/register/view/register_page.dart';
 import 'package:education_app_like_udemy/view/home/view/home_page.dart';
 import 'package:education_app_like_udemy/view/auth/introduction/view/introduction_screen.dart';
 import 'package:education_app_like_udemy/view/auth/login/view/login_page.dart';
@@ -23,7 +23,7 @@ class NavigationRouters {
       ),
       GoRoute(
         path: RouteEnum.register.rawValue,
-        builder: (context, state) => const RegisterView(),
+        builder: (context, state) => const RegisterPage(),
       ),
       GoRoute(
         path: RouteEnum.homePage.rawValue,

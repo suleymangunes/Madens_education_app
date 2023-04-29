@@ -12,4 +12,12 @@ class NavigationRoute {
   static void goRouteClear(String route) {
     router.pushReplacement(route);
   }
+
+  static void goRouteNormalWithParam(String route, String param) {
+    router.pushNamed(route, params: {"key": param});
+  }
+
+  static void goRouteClearWithParam(String route, String param) {
+    router.pushReplacementNamed(route, params: {"key": param});
+  }
 }

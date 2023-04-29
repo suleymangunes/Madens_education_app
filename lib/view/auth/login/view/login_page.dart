@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  const LoginPage({super.key, required this.role});
+  final String role;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,9 @@ class LoginPage extends StatelessWidget {
         BlocProvider(create: (context) => ValidateCubit()),
         BlocProvider(create: (context) => LoginCubit()),
       ],
-      child: const LoginView(),
+      child: LoginView(
+        role: role,
+      ),
     );
   }
 }

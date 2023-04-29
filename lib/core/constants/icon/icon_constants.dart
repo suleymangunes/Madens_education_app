@@ -8,4 +8,7 @@ class IconConstants {
   static const Icon email = Icon(Icons.email_outlined);
   static const Icon password = Icon(Icons.key_outlined);
   static const Icon done = Icon(Icons.file_download_done_outlined, color: Colors.green, size: 50);
+  static const Icon home = Icon(Icons.home_outlined);
+  static const Icon basket = Icon(Icons.shopping_basket_outlined);
+  static const Icon person = Icon(Icons.person_outline_outlined);
 }

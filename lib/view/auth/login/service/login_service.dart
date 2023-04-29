@@ -14,7 +14,7 @@ class LoginService {
     _loginModel = LoginModel(email: email, password: password);
   }
 
-  Future<LoginResponseModel> login() async {
+  Future<LoginResponseModel> loginTeacher() async {
     await Future.delayed(const Duration(seconds: 5));
     var response = await http.post(
       Uri.parse(ApiService.accountLogin.pathValue),
@@ -24,6 +24,23 @@ class LoginService {
       ),
     );
     final json = jsonDecode(response.body);
+    print(json);
+    print("ogretmen giris yapti");
+    return LoginResponseModel.fromJson(json);
+  }
+
+  Future<LoginResponseModel> loginStudent() async {
+    await Future.delayed(const Duration(seconds: 5));
+    var response = await http.post(
+      Uri.parse(ApiService.studentLogin.pathValue),
+      headers: ApiConstants.headerJson,
+      body: jsonEncode(
+        _loginModel.toJson(),
+      ),
+    );
+    final json = jsonDecode(response.body);
+    print(json);
+    print("ogrenci giris yaptı");
     return LoginResponseModel.fromJson(json);
   }
 }

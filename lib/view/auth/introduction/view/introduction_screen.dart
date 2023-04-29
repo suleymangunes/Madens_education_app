@@ -17,7 +17,7 @@ class Introduction {
     done: const TextMediumTitle(text: LocaleKeys.buttonDone),
     onDone: () {
       IntroCaching.watchIntro();
-      NavigationRoute.goRouteClear(RouteEnum.login.rawValue);
+      NavigationRoute.goRouteClear(RouteEnum.userRole.rawValue);
     },
     dotsDecorator: DotsDecoration.decoration,
   );

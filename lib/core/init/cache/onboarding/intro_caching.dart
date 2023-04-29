@@ -5,6 +5,8 @@ class IntroCaching {
   const IntroCaching._();
 
   static final Box _intro = Hive.box('intro');
+  static final Box _login = Hive.box('login');
+  static final Box _role = Hive.box('role');
 
   static Future<void> init() async {
     await Hive.openBox('intro');
@@ -13,7 +15,15 @@ class IntroCaching {
   static String initialIntro() {
     switch (_intro.get('introWatched')) {
       case true:
-        return RouteEnum.login.rawValue;
+        if (_login.get('isLogined') != null && _login.get('isLogined') == true) {
+          if (_role.get('myRole') != null && _role.get('myRole') == "student") {
+            return RouteEnum.studentHomePage.rawValue;
+          } else {
+            return RouteEnum.teacherHomePage.rawValue;
+          }
+        } else {
+          return RouteEnum.userRole.rawValue;
+        }
       default:
         return RouteEnum.intro.rawValue;
     }

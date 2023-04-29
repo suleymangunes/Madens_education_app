@@ -6,7 +6,6 @@ import 'package:education_app_like_udemy/core/components/padding/padding_for_scr
 import 'package:education_app_like_udemy/core/components/text/title_spacing_with_padding.dart';
 import 'package:education_app_like_udemy/core/constants/string/string_constants.dart';
 import 'package:education_app_like_udemy/core/extension/context/context_extension.dart';
-import 'package:education_app_like_udemy/core/init/navigation/navigation_route.dart';
 import 'package:education_app_like_udemy/product/widget/text-button/text_button_medium_navigate_back.dart';
 import 'package:education_app_like_udemy/view/_product/enum/register/register_enum.dart';
 import 'package:education_app_like_udemy/view/_product/enum/route/route_enum.dart';
@@ -22,7 +21,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class RegisterView extends StatefulWidget {
-  const RegisterView({super.key});
+  const RegisterView({super.key, required this.role});
+  final String role;
 
   @override
   State<RegisterView> createState() => _RegisterViewState();
@@ -121,7 +121,9 @@ class _RegisterViewState extends State<RegisterView> {
           FocusManager.instance.primaryFocus?.unfocus();
           if (_formKey.currentState!.validate()) {
             context.read<WaitedRegisterCubit>().readOnlyTrue();
-            context.read<RegisterCubit>().register(email: _emailController.text, password: _passwordController.text);
+            context
+                .read<RegisterCubit>()
+                .register(email: _emailController.text, password: _passwordController.text, role: widget.role);
           } else {
             context.read<ValidateRegisterCubit>().validateMode();
           }
@@ -182,6 +184,7 @@ class _RegisterViewState extends State<RegisterView> {
   }
 
   void goLoginPage() {
-    NavigationRoute.goRouteClear(RouteEnum.login.rawValue);
+    GoRouter.of(context).pop();
+    GoRouter.of(context).pop();
   }
 }

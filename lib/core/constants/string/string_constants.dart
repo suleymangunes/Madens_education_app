@@ -23,4 +23,13 @@ class StringConstants {
 
   static const String registerAlertTitle = "Registered Success";
   static const String registerAlertMessage = "Your account has been created.";
+
+  static const String welcomeApp = "Welcome to Madens!";
+  static const String registerChoose =
+      "Register by choosing your role below and start your online education adventure.";
+  static const String istudent = "I'am Student";
+  static const String iteacher = "I'am Teacher";
+  static const String home = "Home";
+  static const String basket = "Basket";
+  static const String person = "Person";
 }

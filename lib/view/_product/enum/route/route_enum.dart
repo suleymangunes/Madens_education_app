@@ -1,9 +1,11 @@
 enum RouteEnum {
   intro,
   setting,
-  homePage,
+  studentHomePage,
   login,
   register,
+  userRole,
+  teacherHomePage,
 }
 
 extension RouteEnumString on RouteEnum {
@@ -13,12 +15,16 @@ extension RouteEnumString on RouteEnum {
         return '/intro';
       case RouteEnum.setting:
         return '/setting';
-      case RouteEnum.homePage:
-        return '/homePage';
+      case RouteEnum.studentHomePage:
+        return '/studentHomePage';
       case RouteEnum.login:
         return '/login';
       case RouteEnum.register:
         return '/register';
+      case RouteEnum.userRole:
+        return '/userRole';
+      case RouteEnum.teacherHomePage:
+        return '/teacherHomePage';
     }
   }
 }

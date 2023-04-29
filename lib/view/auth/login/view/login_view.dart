@@ -1,5 +1,6 @@
 import 'package:education_app_like_udemy/core/components/text/title_spacing_with_padding.dart';
-import 'package:education_app_like_udemy/product/widget/text-button/text_button_medium_navigate_normal.dart';
+import 'package:education_app_like_udemy/core/init/cache/login/login_caching.dart';
+import 'package:education_app_like_udemy/product/widget/text-button/text_button_medium_navigate_normal_param.dart';
 import 'package:education_app_like_udemy/view/_product/widget/animation/lottie_loading_button.dart';
 import 'package:education_app_like_udemy/view/auth/login/view-model/wait/waited_button.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,8 @@ import 'package:education_app_like_udemy/view/auth/login/view-model/validation/v
 import 'package:go_router/go_router.dart';
 
 class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+  const LoginView({super.key, required this.role});
+  final String role;
 
   @override
   State<LoginView> createState() => _LoginViewState();
@@ -90,10 +92,11 @@ class _LoginViewState extends State<LoginView> {
           _loginButton(context),
           BlocBuilder<WaitedLoginCubit, bool>(
             builder: (context, state) {
-              return TextButtonMediumNavigateGoNormal(
+              return TextButtonMediumNavigateGoNormalParam(
                 path: RouteEnum.register.rawValue,
                 text: StringConstants.createAccount,
                 wait: state,
+                param: widget.role,
               );
             },
           ),
@@ -111,7 +114,9 @@ class _LoginViewState extends State<LoginView> {
           FocusManager.instance.primaryFocus?.unfocus();
           if (_formKey.currentState!.validate()) {
             context.read<WaitedLoginCubit>().readOnlyTrue();
-            context.read<LoginCubit>().login(email: _emailController.text, password: _passwordController.text);
+            context
+                .read<LoginCubit>()
+                .login(email: _emailController.text, password: _passwordController.text, role: widget.role);
           } else {
             context.read<ValidateCubit>().validateMode();
           }
@@ -137,7 +142,15 @@ class _LoginViewState extends State<LoginView> {
 
   void _loginListener(context, state) {
     if (state.status == LoginEnum.completed) {
-      NavigationRoute.goRouteClear(RouteEnum.homePage.rawValue);
+      if (state is CompletedLoginState) {
+        LoginCaching.setToken(state.tokenData.data ?? "null");
+        LoginCaching.signin();
+      }
+      if (widget.role == "student") {
+        NavigationRoute.goRouteClear(RouteEnum.studentHomePage.rawValue);
+      } else {
+        NavigationRoute.goRouteClear(RouteEnum.teacherHomePage.rawValue);
+      }
     } else if (state.status == LoginEnum.error) {
       if (state is ErrorLoginState) {
         final String message = state.errorMessage?.message ?? StringConstants.wentWrong;

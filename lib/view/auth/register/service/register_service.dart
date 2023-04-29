@@ -14,10 +14,10 @@ class RegisterService {
     _registerModel = RegisterModel(email: email, password: password, confirmPassword: password);
   }
 
-  Future<RegisterResponseModel> register() async {
+  Future<RegisterResponseModel> registerTeacher() async {
     await Future.delayed(const Duration(seconds: 5));
     var response = await http.post(
-      Uri.parse(ApiService.register.pathValue),
+      Uri.parse(ApiService.accountregister.pathValue),
       headers: ApiConstants.headerJson,
       body: jsonEncode(
         _registerModel.toJson(),
@@ -25,6 +25,22 @@ class RegisterService {
     );
     final json = jsonDecode(response.body);
     print(json);
+    print("ogretmen kaydoldu");
+    return RegisterResponseModel.fromJson(json);
+  }
+
+  Future<RegisterResponseModel> registerStudent() async {
+    await Future.delayed(const Duration(seconds: 5));
+    var response = await http.post(
+      Uri.parse(ApiService.studentRegister.pathValue),
+      headers: ApiConstants.headerJson,
+      body: jsonEncode(
+        _registerModel.toJson(),
+      ),
+    );
+    final json = jsonDecode(response.body);
+    print(json);
+    print("ogrenci kaydoldu");
     return RegisterResponseModel.fromJson(json);
   }
 }

@@ -1,6 +1,8 @@
 enum ApiService {
   accountLogin,
-  register,
+  accountregister,
+  studentLogin,
+  studentRegister,
 }
 
 extension PathExtension on ApiService {
@@ -9,8 +11,12 @@ extension PathExtension on ApiService {
     switch (this) {
       case ApiService.accountLogin:
         return "$baseUrl/api/Account/login";
-      case ApiService.register:
+      case ApiService.accountregister:
         return "$baseUrl/api/Account/register";
+      case ApiService.studentRegister:
+        return "$baseUrl/api/AuthStudent/register";
+      case ApiService.studentLogin:
+        return "$baseUrl/api/AuthStudent/login";
     }
   }
 }

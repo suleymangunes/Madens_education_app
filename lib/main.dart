@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:education_app_like_udemy/app.dart';
+import 'package:education_app_like_udemy/core/init/cache/login/login_caching.dart';
 import 'package:education_app_like_udemy/core/init/cache/onboarding/intro_caching.dart';
 import 'package:education_app_like_udemy/core/init/cubit/theme_cubit.dart';
 import 'package:education_app_like_udemy/core/init/cache/theme/theme_caching.dart';
@@ -17,6 +18,7 @@ Future<void> main() async {
   await LocaleVariables._init();
   await ThemeCaching.init();
   await IntroCaching.init();
+  await LoginCaching.init();
   Bloc.observer = CubitObserver();
   HttpOverrides.global = MyHttpOverrides();
 
@@ -28,9 +30,7 @@ Future<void> main() async {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => ThemeCubit()),
-          BlocProvider(
-            create: (context) => WaitedLoginCubit(),
-          )
+          BlocProvider(create: (context) => WaitedLoginCubit()),
         ],
         child: const MyApp(),
       ),

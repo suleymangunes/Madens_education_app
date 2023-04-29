@@ -17,7 +17,8 @@ class LoadingLoginState extends ILoginState {
 }
 
 class CompletedLoginState extends ILoginState {
-  CompletedLoginState() : super(status: LoginEnum.completed);
+  final LoginResponseModel tokenData;
+  CompletedLoginState({required this.tokenData}) : super(status: LoginEnum.completed);
 }
 
 class ErrorLoginState extends ILoginState {

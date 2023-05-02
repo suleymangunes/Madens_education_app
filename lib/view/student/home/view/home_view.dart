@@ -4,6 +4,7 @@ import 'package:education_app_like_udemy/core/init/navigation/navigation_route.d
 import 'package:education_app_like_udemy/view/_product/enum/get-course/get_course_enum.dart';
 import 'package:education_app_like_udemy/view/_product/enum/route/route_enum.dart';
 import 'package:education_app_like_udemy/view/_product/widget/animation/lottie_loading_button.dart';
+import 'package:education_app_like_udemy/view/student/home/model/course_model.dart';
 import 'package:education_app_like_udemy/view/student/home/view-model/course-cubit/get_course_cubit.dart';
 import 'package:education_app_like_udemy/view/student/home/view-model/course-cubit/get_course_state.dart';
 import 'package:flutter/material.dart';
@@ -56,12 +57,14 @@ class HomeView extends StatelessWidget {
         final courseData = data.response[index];
         // TODO bu kısmı duzenle ve dizayni guzellestir
         return CourseCard(
-          id: courseData.id,
+          course: courseData,
+          id: courseData.courseID,
           courseName: courseData.courseName.toString(),
           courseDescription: courseData.courseDescription.toString(),
           price: courseData.coursePrice.toString(),
           date: courseData.createdDate.toString(),
           imageurl: courseData.imageUrl.toString(),
+          teacherName: courseData.teacherName.toString(),
         );
       },
     );
@@ -69,27 +72,34 @@ class HomeView extends StatelessWidget {
 }
 
 class CourseCard extends StatelessWidget {
-  const CourseCard(
-      {super.key,
-      required this.courseName,
-      required this.courseDescription,
-      required this.price,
-      required this.date,
-      required this.imageurl,
-      required this.id});
+  const CourseCard({
+    super.key,
+    required this.courseName,
+    required this.courseDescription,
+    required this.price,
+    required this.date,
+    required this.imageurl,
+    required this.id,
+    required this.course,
+    required this.teacherName,
+  });
   final String courseName;
   final String courseDescription;
   final String price;
   final String date;
   final String imageurl;
+  final String teacherName;
   final int? id;
+  final Courses course;
 
   @override
   Widget build(BuildContext context) {
     return Card(
       margin: EdgeInsets.symmetric(horizontal: context.lowValue, vertical: context.lowValue),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          NavigationRoute.goWithInt(RouteEnum.productDetail.rawValue, id as int);
+        },
         child: ListTile(
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,6 +112,7 @@ class CourseCard extends StatelessWidget {
                 courseDescription,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
+              Text(teacherName),
               Text(price),
               Text(date),
             ],

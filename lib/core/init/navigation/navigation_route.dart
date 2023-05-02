@@ -20,4 +20,12 @@ class NavigationRoute {
   static void goRouteClearWithParam(String route, String param) {
     router.pushReplacementNamed(route, params: {"key": param});
   }
+
+  static void goWithObject(String route, Object object) {
+    router.pushNamed(route, extra: object);
+  }
+
+  static void goWithInt(String route, int integer) {
+    router.pushNamed(route, extra: integer);
+  }
 }

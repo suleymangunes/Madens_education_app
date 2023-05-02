@@ -1,4 +1,14 @@
-enum RouteEnum { intro, setting, studentHomePage, login, register, userRole, teacherHomePage, studentSearch }
+enum RouteEnum {
+  intro,
+  setting,
+  studentHomePage,
+  login,
+  register,
+  userRole,
+  teacherHomePage,
+  studentSearch,
+  productDetail,
+}
 
 extension RouteEnumString on RouteEnum {
   String get rawValue {
@@ -19,6 +29,8 @@ extension RouteEnumString on RouteEnum {
         return '/teacherHomePage';
       case RouteEnum.studentSearch:
         return '/studentHomepage/studentSearch';
+      case RouteEnum.productDetail:
+        return '/productDetail';
     }
   }
 }

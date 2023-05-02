@@ -6,6 +6,7 @@ class Courses {
   double? coursePrice;
   double? starAvg;
   String? createdDate;
+  String? teacherName;
   int? teacherId;
   int? categoryId;
   int? id;
@@ -19,6 +20,7 @@ class Courses {
       this.coursePrice,
       this.starAvg,
       this.createdDate,
+      this.teacherName,
       this.teacherId,
       this.categoryId,
       this.id,
@@ -32,6 +34,7 @@ class Courses {
     coursePrice = json['coursePrice'];
     starAvg = json['starAvg'];
     createdDate = json['createdDate'];
+    teacherName = json['teacherName'];
     teacherId = json['teacherId'];
     categoryId = json['categoryId'];
     id = json['id'];
@@ -47,6 +50,7 @@ class Courses {
     data['coursePrice'] = coursePrice;
     data['starAvg'] = starAvg;
     data['createdDate'] = createdDate;
+    data['teacherName'] = teacherName;
     data['teacherId'] = teacherId;
     data['categoryId'] = categoryId;
     data['id'] = id;

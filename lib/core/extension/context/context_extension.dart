@@ -14,6 +14,8 @@ extension MediaQueryExtension on BuildContext {
   double get largeValue => height * 0.07;
   double get highValue => height * 0.1;
   double get logoValue => height * 0.15;
+  double get listtileImageSize => width * 0.15;
+
   double get introImageTitle => height * 0.65;
   double get textFieldWidht => width * 0.8;
 }

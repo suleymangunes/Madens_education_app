@@ -15,7 +15,6 @@ class RegisterService {
   }
 
   Future<RegisterResponseModel> registerTeacher() async {
-    await Future.delayed(const Duration(seconds: 5));
     var response = await http.post(
       Uri.parse(ApiService.accountregister.pathValue),
       headers: ApiConstants.headerJson,
@@ -30,7 +29,6 @@ class RegisterService {
   }
 
   Future<RegisterResponseModel> registerStudent() async {
-    await Future.delayed(const Duration(seconds: 5));
     var response = await http.post(
       Uri.parse(ApiService.studentRegister.pathValue),
       headers: ApiConstants.headerJson,

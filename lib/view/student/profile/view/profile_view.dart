@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:education_app_like_udemy/core/components/icon/icon_logo.dart';
 import 'package:education_app_like_udemy/core/extension/context/context_extension.dart';
 import 'package:education_app_like_udemy/core/init/cache/login/login_caching.dart';
@@ -6,6 +9,8 @@ import 'package:education_app_like_udemy/view/_product/enum/route/route_enum.dar
 import 'package:education_app_like_udemy/view/auth/login/view-model/wait/waited_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:http/http.dart' as http;
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -45,7 +50,9 @@ class ProfileView extends StatelessWidget {
             elevation: 3,
             margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                hesapSil();
+              },
               child: ListTile(
                 leading: Icon(
                   Icons.delete_forever_outlined,
@@ -77,5 +84,29 @@ class ProfileView extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  // TODO bu kismi duzenle calisiyor ancak duzenlenmeli
+  Future<void> hesapSil() async {
+    print("calisti");
+    var a = {
+      "password": "Sifre.55",
+    };
+    var b = jsonEncode(a);
+    const String link = "https://10.0.2.2:7278/api/AuthStudent?password=Suleyman.55";
+    var c = await http.delete(
+      Uri.parse(link),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        HttpHeaders.authorizationHeader:
+            'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjgiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoib2dyZW5jaUBnbWFpbC5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJTdHVkZW50IiwiZXhwIjoxNjgyOTcwMTkzfQ.tmfY9BGzFVcHMpvS9-ax9W3o5MC8GQN-cIQddtzQ3AV8QJ-_znv5LhNN0HXfbufJalUkr20UdQmkM03z2skMaw',
+        // 'Authorization':
+        //     'Bearer 1111yJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjMiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoic3R1ZGVudEBnbWFpbC5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJTdHVkZW50IiwiZXhwIjoxNjgyOTY3NTg4fQ.s0Nj6cxZcQiduPDKCOWO4tkbSWpyp_gQHcf56epd7ZSZWNkU3ciPNXmeN8JkV1-r7qsf9IIc3AhaVM_3ZF83qQ',
+      },
+
+      // body: b
+    );
+    print(c.body);
   }
 }

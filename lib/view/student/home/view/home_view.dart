@@ -1,6 +1,8 @@
 import 'package:education_app_like_udemy/core/components/image/listtile_image.dart';
 import 'package:education_app_like_udemy/core/extension/context/context_extension.dart';
+import 'package:education_app_like_udemy/core/init/navigation/navigation_route.dart';
 import 'package:education_app_like_udemy/view/_product/enum/get-course/get_course_enum.dart';
+import 'package:education_app_like_udemy/view/_product/enum/route/route_enum.dart';
 import 'package:education_app_like_udemy/view/_product/widget/animation/lottie_loading_button.dart';
 import 'package:education_app_like_udemy/view/student/home/view-model/course-cubit/get_course_cubit.dart';
 import 'package:education_app_like_udemy/view/student/home/view-model/course-cubit/get_course_state.dart';
@@ -13,13 +15,17 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // TODO bu kismi duzenle ve yeniden dizaynla
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        title: const TextField(
-          decoration: InputDecoration(
-            prefixIcon: Icon(Icons.search),
-            hintText: "Search something...",
+        title: IconButton(
+          onPressed: () {
+            NavigationRoute.goRouteNormal(RouteEnum.studentSearch.rawValue);
+          },
+          icon: const Icon(
+            Icons.search,
+            color: Colors.black,
           ),
         ),
       ),
@@ -49,30 +55,62 @@ class HomeView extends StatelessWidget {
       itemBuilder: (context, index) {
         final courseData = data.response[index];
         // TODO bu kısmı duzenle ve dizayni guzellestir
-        return Card(
-          margin: EdgeInsets.symmetric(horizontal: context.lowValue, vertical: context.lowValue),
-          child: InkWell(
-            onTap: () {},
-            child: ListTile(
-                title: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      courseData.courseName.toString(),
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
-                    Text(
-                      courseData.courseDescription.toString(),
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                    Text(courseData.coursePrice.toString()),
-                    Text(courseData.createdDate.toString()),
-                  ],
-                ),
-                trailing: LisstileImage(image: courseData.imageUrl.toString())),
-          ),
+        return CourseCard(
+          id: courseData.id,
+          courseName: courseData.courseName.toString(),
+          courseDescription: courseData.courseDescription.toString(),
+          price: courseData.coursePrice.toString(),
+          date: courseData.createdDate.toString(),
+          imageurl: courseData.imageUrl.toString(),
         );
       },
+    );
+  }
+}
+
+class CourseCard extends StatelessWidget {
+  const CourseCard(
+      {super.key,
+      required this.courseName,
+      required this.courseDescription,
+      required this.price,
+      required this.date,
+      required this.imageurl,
+      required this.id});
+  final String courseName;
+  final String courseDescription;
+  final String price;
+  final String date;
+  final String imageurl;
+  final int? id;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.symmetric(horizontal: context.lowValue, vertical: context.lowValue),
+      child: InkWell(
+        onTap: () {},
+        child: ListTile(
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                courseName,
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              Text(
+                courseDescription,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              Text(price),
+              Text(date),
+            ],
+          ),
+          trailing: LisstileImage(
+            image: imageurl,
+          ),
+        ),
+      ),
     );
   }
 }

@@ -1,6 +1,6 @@
-import 'package:education_app_like_udemy/view/student/product/model/product_model.dart';
-import 'package:education_app_like_udemy/view/student/product/service/product_repository.dart';
-import 'package:education_app_like_udemy/view/student/product/view-model/product_state.dart';
+import 'package:education_app_like_udemy/view/student/product/product-detail/model/product_model.dart';
+import 'package:education_app_like_udemy/view/student/product/product-detail/service/product_repository.dart';
+import 'package:education_app_like_udemy/view/student/product/product-detail/view-model/product_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductDetailCubit extends Cubit<IProductState> {

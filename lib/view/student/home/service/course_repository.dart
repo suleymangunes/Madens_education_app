@@ -11,7 +11,7 @@ class CourseRepository {
   Future<List<Courses>> getAllCourses() async {
     final token = _token.get('myToken');
     print(token);
-    const String link = "https://10.0.2.2:7278/api/Course/GetAll?page=2";
+    const String link = "https://10.0.2.2:7278/api/Course/GetAll?page=1";
     print("bu kisma kadar sorun yok");
     var c = await http.get(
       Uri.parse(link),
@@ -22,6 +22,7 @@ class CourseRepository {
       },
     );
     print("sanirim su kisimda sorun oldu");
+    print(c.body);
     var json = jsonDecode(c.body)["data"]["courses"] as List;
     // print(json);
     print(json[0]);

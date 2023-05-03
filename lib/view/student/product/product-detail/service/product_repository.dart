@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:education_app_like_udemy/view/student/product/model/product_model.dart';
+import 'package:education_app_like_udemy/view/student/product/product-detail/model/product_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
 

@@ -7,7 +7,7 @@ import 'package:education_app_like_udemy/view/student/home/view/student_home_pag
 import 'package:education_app_like_udemy/view/auth/introduction/view/introduction_screen.dart';
 import 'package:education_app_like_udemy/view/auth/login/view/login_page.dart';
 import 'package:education_app_like_udemy/view/settings/view/setting_view.dart';
-import 'package:education_app_like_udemy/view/student/product/view/product_detail_page.dart';
+import 'package:education_app_like_udemy/view/student/product/product-detail/view/product_detail_page.dart';
 import 'package:education_app_like_udemy/view/student/search/view/search_view.dart';
 import 'package:education_app_like_udemy/view/teacher/home/view/teacher_home_page.dart';
 import 'package:go_router/go_router.dart';

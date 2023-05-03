@@ -1,5 +1,5 @@
 import 'package:education_app_like_udemy/view/_product/enum/get-course/get_course_enum.dart';
-import 'package:education_app_like_udemy/view/student/product/model/product_model.dart';
+import 'package:education_app_like_udemy/view/student/product/product-detail/model/product_model.dart';
 
 abstract class IProductState {
   GetCourseEnum status;

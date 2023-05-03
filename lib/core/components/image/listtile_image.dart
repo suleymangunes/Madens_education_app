@@ -9,7 +9,6 @@ class LisstileImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: context.listtileImageSize,
-      width: context.listtileImageSize,
       child: FittedBox(
         fit: BoxFit.cover,
         child: Image.network(

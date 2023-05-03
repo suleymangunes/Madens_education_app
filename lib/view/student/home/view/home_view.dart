@@ -4,7 +4,6 @@ import 'package:education_app_like_udemy/core/init/navigation/navigation_route.d
 import 'package:education_app_like_udemy/view/_product/enum/get-course/get_course_enum.dart';
 import 'package:education_app_like_udemy/view/_product/enum/route/route_enum.dart';
 import 'package:education_app_like_udemy/view/_product/widget/animation/lottie_loading_button.dart';
-import 'package:education_app_like_udemy/view/student/home/model/course_model.dart';
 import 'package:education_app_like_udemy/view/student/home/view-model/course-cubit/get_course_cubit.dart';
 import 'package:education_app_like_udemy/view/student/home/view-model/course-cubit/get_course_state.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +56,6 @@ class HomeView extends StatelessWidget {
         final courseData = data.response[index];
         // TODO bu kısmı duzenle ve dizayni guzellestir
         return CourseCard(
-          course: courseData,
           id: courseData.courseID,
           courseName: courseData.courseName.toString(),
           courseDescription: courseData.courseDescription.toString(),
@@ -80,7 +78,6 @@ class CourseCard extends StatelessWidget {
     required this.date,
     required this.imageurl,
     required this.id,
-    required this.course,
     required this.teacherName,
   });
   final String courseName;
@@ -90,7 +87,6 @@ class CourseCard extends StatelessWidget {
   final String imageurl;
   final String teacherName;
   final int? id;
-  final Courses course;
 
   @override
   Widget build(BuildContext context) {

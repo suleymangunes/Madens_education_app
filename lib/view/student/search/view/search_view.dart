@@ -81,7 +81,6 @@ class _SearchViewState extends State<SearchView> {
       itemBuilder: (BuildContext context, int index) {
         var data = response.responseList[index];
         return CourseCard(
-          course: data,
           id: data.id,
           courseName: data.courseName.toString(),
           courseDescription: data.courseDescription.toString(),

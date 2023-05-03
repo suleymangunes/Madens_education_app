@@ -1,11 +1,14 @@
-import 'package:education_app_like_udemy/core/extension/context/context_extension.dart';
-import 'package:education_app_like_udemy/view/student/product/model/product_model.dart';
-import 'package:education_app_like_udemy/view/student/product/view-model/product_cubit.dart';
-import 'package:education_app_like_udemy/view/student/product/view-model/product_state.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+
+import 'package:education_app_like_udemy/view/student/product/add-basket/view/add_to_basket_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:education_app_like_udemy/core/extension/context/context_extension.dart';
 import 'package:education_app_like_udemy/view/_product/enum/get-course/get_course_enum.dart';
+import 'package:education_app_like_udemy/view/student/product/product-detail/model/product_model.dart';
+import 'package:education_app_like_udemy/view/student/product/product-detail/view-model/product_cubit.dart';
+import 'package:education_app_like_udemy/view/student/product/product-detail/view-model/product_state.dart';
 
 class ProductDetailPage extends StatelessWidget {
   const ProductDetailPage({super.key, required this.id});
@@ -75,10 +78,14 @@ class ProductDetailScreen extends StatelessWidget {
         // Text(model.courseName.toString()),
         // Text(model.coursePrice.toString()),
         // Text(model.createdDate.toString()),,
-        // context.largeSpace,
+        context.smallSpace,
+        Text(
+          "Müfredat",
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
         Expanded(
           child: ListView.builder(
-            itemCount: model.curriculums?.length,
+            itemCount: model.curriculums?.length ?? 0,
             itemBuilder: (BuildContext context, int index) {
               return Card(
                 elevation: 3,
@@ -121,10 +128,7 @@ class ProductDetailCard extends StatelessWidget {
                 Text(model.coursePrice.toString()),
                 Text(model.createdDate.toString()),
                 Text(model.starAvg.toString()),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: const Text("sepete ekle"),
-                ),
+                AddToBasketButton(courseId: model.courseID),
               ],
             ),
           ),

@@ -1,5 +1,7 @@
 import 'package:education_app_like_udemy/core/components/image/listtile_image.dart';
 import 'package:education_app_like_udemy/core/extension/context/context_extension.dart';
+import 'package:education_app_like_udemy/core/init/navigation/navigation_route.dart';
+import 'package:education_app_like_udemy/view/_product/enum/route/route_enum.dart';
 import 'package:education_app_like_udemy/view/_product/widget/animation/lottie_loading_button.dart';
 import 'package:education_app_like_udemy/view/student/basket/model-view/get_basket_cubit.dart';
 import 'package:education_app_like_udemy/view/student/basket/model-view/get_basket_state.dart';
@@ -23,55 +25,32 @@ class BasketView extends StatelessWidget {
           ),
           backgroundColor: Colors.white,
         ),
-        body: Stack(
-          children: [
-            BlocProvider(
-              create: (context) => GetBasketCubit()..getBasket(),
-              child: BlocBuilder<GetBasketCubit, IGetBasketState>(
-                builder: (context, state) {
-                  switch (state.status) {
-                    case GetCourseEnum.initial:
-                      return Center(
-                        child:
-                            Text("Sepetinizde bir şey bulunmamaktadir.", style: Theme.of(context).textTheme.bodyLarge),
-                      );
-                    case GetCourseEnum.loading:
-                      return const Center(child: LottieBigLoadingButton());
-                    case GetCourseEnum.completed:
-                      if (state is GetBasketCompleted && state.basketList.isNotEmpty) {
-                        return BasketListBuilder(data: state);
-                      } else {
-                        return Center(
-                          child: Text("Sepetinizde bir şey bulunmamaktadir.",
-                              style: Theme.of(context).textTheme.bodyLarge),
-                        );
-                      }
-                    case GetCourseEnum.error:
-                      return Center(
-                        child: Text("Sepetiniz boş görünüyor..", style: Theme.of(context).textTheme.bodyLarge),
-                      );
+        body: BlocProvider(
+          create: (context) => GetBasketCubit()..getBasket(),
+          child: BlocBuilder<GetBasketCubit, IGetBasketState>(
+            builder: (context, state) {
+              switch (state.status) {
+                case GetCourseEnum.initial:
+                  return Center(
+                    child: Text("Sepetinizde bir şey bulunmamaktadir.", style: Theme.of(context).textTheme.bodyLarge),
+                  );
+                case GetCourseEnum.loading:
+                  return const Center(child: LottieBigLoadingButton());
+                case GetCourseEnum.completed:
+                  if (state is GetBasketCompleted && state.basketList.isNotEmpty) {
+                    return BasketListBuilder(data: state);
+                  } else {
+                    return Center(
+                      child: Text("Sepetinizde bir şey bulunmamaktadir.", style: Theme.of(context).textTheme.bodyLarge),
+                    );
                   }
-                },
-              ),
-            ),
-            Positioned(
-              bottom: 0,
-              child: Container(
-                color: Colors.white,
-                height: 75,
-                width: context.width,
-                child: Card(
-                  child: ListTile(
-                    title: const Text("toplam fiyat vs"),
-                    trailing: ElevatedButton(
-                      onPressed: () {},
-                      child: const Text("Satin al"),
-                    ),
-                  ),
-                ),
-              ),
-            )
-          ],
+                case GetCourseEnum.error:
+                  return Center(
+                    child: Text("Sepetiniz boş görünüyor..", style: Theme.of(context).textTheme.bodyLarge),
+                  );
+              }
+            },
+          ),
         ),
       ),
     );
@@ -84,21 +63,43 @@ class BasketListBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: data.basketList.length,
-      itemBuilder: (BuildContext context, int index) {
-        final model = data.basketList[index].courses?[0];
-        return BasketCard(
-          courseName: model?.courseName.toString() ?? "",
-          courseDescription: model?.courseDescription.toString() ?? "",
-          price: model?.coursePrice.toString() ?? "",
-          date: model?.createdDate.toString() ?? "",
-          imageurl: model?.imageUrl.toString() ?? "",
-          id: model?.id ?? 1,
-          teacherName: model?.teacherName.toString() ?? "",
-          basketId: data.basketList[index].basketId,
-        );
-      },
+    return Column(
+      children: [
+        Expanded(
+          flex: 9,
+          child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: data.basketList.length,
+            itemBuilder: (BuildContext context, int index) {
+              final model = data.basketList[index].courses?[0];
+              return BasketCard(
+                courseName: model?.courseName.toString() ?? "",
+                courseDescription: model?.courseDescription.toString() ?? "",
+                price: model?.coursePrice.toString() ?? "",
+                date: model?.createdDate.toString() ?? "",
+                imageurl: model?.imageUrl.toString() ?? "",
+                id: model?.id ?? 1,
+                teacherName: model?.teacherName.toString() ?? "",
+                basketId: data.basketList[index].basketId,
+              );
+            },
+          ),
+        ),
+        Expanded(
+          flex: 1,
+          child: Row(
+            children: [
+              const Text("fiyat su kadar vs"),
+              ElevatedButton(
+                onPressed: () {
+                  NavigationRoute.goRouteNormal(RouteEnum.payment.rawValue);
+                },
+                child: const Text("satin al"),
+              ),
+            ],
+          ),
+        )
+      ],
     );
   }
 }

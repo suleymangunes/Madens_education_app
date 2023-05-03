@@ -8,6 +8,7 @@ enum RouteEnum {
   teacherHomePage,
   studentSearch,
   productDetail,
+  payment,
 }
 
 extension RouteEnumString on RouteEnum {
@@ -31,6 +32,8 @@ extension RouteEnumString on RouteEnum {
         return '/studentHomepage/studentSearch';
       case RouteEnum.productDetail:
         return '/productDetail';
+      case RouteEnum.payment:
+        return '/payment';
     }
   }
 }

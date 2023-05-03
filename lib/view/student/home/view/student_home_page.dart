@@ -25,6 +25,7 @@ class StudentHomePage extends StatelessWidget {
 
   BottomNavigationBar _bottomNavBar(int state, BuildContext context) {
     return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
       currentIndex: state,
       onTap: (value) {
         context.read<BottomNavIndexCubit>().changeBottomIndex(value);
@@ -32,6 +33,7 @@ class StudentHomePage extends StatelessWidget {
       items: const [
         BottomNavigationBarItem(icon: IconConstants.home, label: StringConstants.home),
         BottomNavigationBarItem(icon: IconConstants.basket, label: StringConstants.basket),
+        BottomNavigationBarItem(icon: Icon(Icons.menu_book_outlined), label: "My Course"),
         BottomNavigationBarItem(icon: IconConstants.person, label: StringConstants.person),
       ],
     );

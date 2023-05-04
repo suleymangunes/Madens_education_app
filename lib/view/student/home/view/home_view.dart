@@ -56,6 +56,7 @@ class HomeView extends StatelessWidget {
         final courseData = data.response[index];
         // TODO bu kısmı duzenle ve dizayni guzellestir
         return CourseCard(
+          path: RouteEnum.productDetail.rawValue,
           id: courseData.courseID,
           courseName: courseData.courseName.toString(),
           courseDescription: courseData.courseDescription.toString(),
@@ -79,6 +80,7 @@ class CourseCard extends StatelessWidget {
     required this.imageurl,
     required this.id,
     required this.teacherName,
+    this.path,
   });
   final String courseName;
   final String courseDescription;
@@ -87,6 +89,7 @@ class CourseCard extends StatelessWidget {
   final String imageurl;
   final String teacherName;
   final int? id;
+  final String? path;
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +97,7 @@ class CourseCard extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: context.lowValue, vertical: context.lowValue),
       child: InkWell(
         onTap: () {
-          NavigationRoute.goWithInt(RouteEnum.productDetail.rawValue, id as int);
+          NavigationRoute.goWithInt(path as String, id as int);
         },
         child: ListTile(
           title: Column(

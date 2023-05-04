@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:education_app_like_udemy/view/_product/enum/route/route_enum.dart';
 import 'package:education_app_like_udemy/view/_product/enum/search/search_enum.dart';
 import 'package:education_app_like_udemy/view/_product/widget/animation/lottie_loading_button.dart';
 import 'package:education_app_like_udemy/view/student/home/view/home_view.dart';
@@ -81,6 +82,7 @@ class _SearchViewState extends State<SearchView> {
       itemBuilder: (BuildContext context, int index) {
         var data = response.responseList[index];
         return CourseCard(
+          path: RouteEnum.productDetail.rawValue,
           id: data.id,
           courseName: data.courseName.toString(),
           courseDescription: data.courseDescription.toString(),

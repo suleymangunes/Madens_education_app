@@ -1,11 +1,13 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:education_app_like_udemy/core/init/navigation/navigation_route.dart';
+import 'package:education_app_like_udemy/view/_product/enum/route/route_enum.dart';
+import 'package:education_app_like_udemy/view/student/my-course/my-course-detail/view-model/my_course_detail_cubit.dart';
+import 'package:education_app_like_udemy/view/student/my-course/my-course-detail/view-model/my_course_detail_state.dart';
 import 'package:education_app_like_udemy/view/student/product/product-detail/model/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:education_app_like_udemy/core/extension/context/context_extension.dart';
 import 'package:education_app_like_udemy/view/_product/enum/get-course/get_course_enum.dart';
-import 'package:education_app_like_udemy/view/student/my-course/my-course-detail/service/my_course_detail_repository.dart';
 
 class MyCourseDetailScreen extends StatelessWidget {
   const MyCourseDetailScreen({
@@ -19,121 +21,100 @@ class MyCourseDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          children: [
-            Text(id.toString()),
-            Text(id.toString()),
-            Text(id.toString()),
-            Text(id.toString()),
-            Text(id.toString()),
-          ],
+        child: BlocProvider(
+          create: (context) => MyCourseDetailCubit()..getMyCourseDeatil(id),
+          child: BlocBuilder<MyCourseDetailCubit, IMyCourseDetailState>(
+            builder: (context, state) {
+              switch (state.status) {
+                case GetCourseEnum.initial:
+                  return const Text("this is initial");
+                case GetCourseEnum.loading:
+                  return const Text("this is loading");
+                case GetCourseEnum.completed:
+                  return MyCourseDetailCompletedScreen(model: (state as MyCourseDetailCompletedState).response);
+                case GetCourseEnum.error:
+                  return const Text("this is error");
+              }
+            },
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          MyCourseDeatilRepository().getMyCourse(id: id);
-        },
-      ),
     );
-    // Column(
-    //   children: [
-    //     Stack(
-    //       children: [
-    //         SizedBox(
-    //           height: context.height * 0.5,
-    //           width: context.width,
-    //         ),
-    //         Align(
-    //           child: Image.network(
-    //             "model.imageUrl.toString()",
-    //             height: context.height * 0.35,
-    //             fit: BoxFit.cover,
-    //             alignment: Alignment.center,
-    //           ),
-    //         ),
-    //         Positioned(
-    //           bottom: 0,
-    //           right: context.width * 0.15,
-    //           child: ProductDetailCard(model: model),
-    //         )
-    //       ],
-    //     ),
-    //     // Text(model.courseDescription.toString()),
-    //     // Text(model.courseName.toString()),
-    //     // Text(model.coursePrice.toString()),
-    //     // Text(model.createdDate.toString()),,
-    //     context.smallSpace,
-    //     Text(
-    //       "Müfredat",
-    //       style: Theme.of(context).textTheme.titleMedium,
-    //     ),
-    //     Expanded(
-    //       child: ListView.builder(
-    //         itemCount: model.curriculums?.length ?? 0,
-    //         itemBuilder: (BuildContext context, int index) {
-    //           return Card(
-    //             elevation: 3,
-    //             margin: EdgeInsets.all(context.lowValue),
-    //             child: ListTile(
-    //               leading: Text((index + 1).toString()),
-    //               title: Text(model.curriculums?[index].title.toString() ?? ""),
-    //               subtitle: Text(model.curriculums?[index].description.toString() ?? ""),
-    //             ),
-    //           );
-    //         },
-    //       ),
-    //     ),
-    //     // Text(model.curriculums?.length.toString() ?? ""),
-    //   ],
-    // );
   }
 }
 
-class MyCourseDetailCubit extends Cubit<IMyCourseDetailState> {
-  MyCourseDetailCubit() : super(MyCourseDetailInitialState());
+class MyCourseDetailCompletedScreen extends StatelessWidget {
+  const MyCourseDetailCompletedScreen({super.key, required this.model});
+  final ProductModel model;
 
-  Future<void> getMyCourseDeatil(int id) async {
-    try {
-      emit(MyCourseDetailLoadingState());
-      final response = await MyCourseDeatilRepository().getMyCourse(id: id);
-      emit(MyCourseDetailCompletedState(response));
-    } catch (e) {
-      emit(MyCourseDetailErrorState(e.toString()));
-    }
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Stack(
+          children: [
+            SizedBox(
+              height: context.height * 0.5,
+              width: context.width,
+            ),
+            Align(
+              child: Image.network(
+                model.imageUrl.toString(),
+                height: context.height * 0.35,
+                fit: BoxFit.cover,
+                alignment: Alignment.center,
+              ),
+            ),
+            Positioned(
+              bottom: 0,
+              right: context.width * 0.15,
+              child: MyCourseDetailCard(model: model),
+            )
+          ],
+        ),
+        // Text(model.courseDescription.toString()),
+        // Text(model.courseName.toString()),
+        // Text(model.coursePrice.toString()),
+        // Text(model.createdDate.toString()),,
+        context.smallSpace,
+        Text(
+          "Müfredat",
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+        Expanded(
+          child: ListView.builder(
+            itemCount: model.curriculums?.length ?? 0,
+            itemBuilder: (BuildContext context, int index) {
+              return Card(
+                elevation: 3,
+                margin: EdgeInsets.all(context.lowValue),
+                child: ListTile(
+                  leading: Text((index + 1).toString()),
+                  title: Text(model.curriculums?[index].title.toString() ?? ""),
+                  subtitle: Text(model.curriculums?[index].description.toString() ?? ""),
+                  trailing: IconButton(
+                      onPressed: () {
+                        NavigationRoute.goRouteNormalWithParam(
+                            RouteEnum.videoPage.rawValue, model.curriculums?[index].videoUrl.toString() as String);
+                      },
+                      icon: const Icon(Icons.videocam_outlined)),
+                ),
+              );
+            },
+          ),
+        ),
+        // Text(model.curriculums?.length.toString() ?? ""),
+      ],
+    );
   }
 }
 
-abstract class IMyCourseDetailState {
-  GetCourseEnum status;
-  IMyCourseDetailState({
-    required this.status,
-  });
-}
-
-class MyCourseDetailInitialState extends IMyCourseDetailState {
-  MyCourseDetailInitialState() : super(status: GetCourseEnum.initial);
-}
-
-class MyCourseDetailLoadingState extends IMyCourseDetailState {
-  MyCourseDetailLoadingState() : super(status: GetCourseEnum.loading);
-}
-
-class MyCourseDetailCompletedState extends IMyCourseDetailState {
-  final ProductModel response;
-  MyCourseDetailCompletedState(this.response) : super(status: GetCourseEnum.completed);
-}
-
-class MyCourseDetailErrorState extends IMyCourseDetailState {
-  final String message;
-  MyCourseDetailErrorState(this.message) : super(status: GetCourseEnum.error);
-}
-
-class ProductDetailCard extends StatelessWidget {
-  const ProductDetailCard({
+class MyCourseDetailCard extends StatelessWidget {
+  const MyCourseDetailCard({
     super.key,
     required this.model,
   });
-  final model;
+  final ProductModel model;
 
   @override
   Widget build(BuildContext context) {

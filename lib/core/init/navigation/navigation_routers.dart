@@ -8,6 +8,7 @@ import 'package:education_app_like_udemy/view/auth/introduction/view/introductio
 import 'package:education_app_like_udemy/view/auth/login/view/login_page.dart';
 import 'package:education_app_like_udemy/view/settings/view/setting_view.dart';
 import 'package:education_app_like_udemy/view/student/my-course/my-course-detail/view/my-course-detail_screen.dart';
+import 'package:education_app_like_udemy/view/student/my-course/video/view/video_page.dart';
 import 'package:education_app_like_udemy/view/student/payment/view/payment_view.dart';
 import 'package:education_app_like_udemy/view/student/product/product-detail/view/product_detail_page.dart';
 import 'package:education_app_like_udemy/view/student/search/view/search_view.dart';
@@ -78,6 +79,13 @@ class NavigationRouters {
           int id = state.extra as int;
           return MyCourseDetailScreen(id: id);
         },
+      ),
+      GoRoute(
+        path: "${RouteEnum.videoPage.rawValue}/:key",
+        name: RouteEnum.videoPage.rawValue,
+        builder: (context, state) => VideoPage(
+          url: state.params["key"] ?? "null",
+        ),
       ),
     ],
   );

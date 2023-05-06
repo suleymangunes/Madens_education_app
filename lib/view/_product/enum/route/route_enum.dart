@@ -10,6 +10,7 @@ enum RouteEnum {
   productDetail,
   payment,
   myCourseDetail,
+  videoPage,
 }
 
 extension RouteEnumString on RouteEnum {
@@ -37,6 +38,8 @@ extension RouteEnumString on RouteEnum {
         return '/payment';
       case RouteEnum.myCourseDetail:
         return '/myCourseDetail';
+      case RouteEnum.videoPage:
+        return '/videoPage';
     }
   }
 }

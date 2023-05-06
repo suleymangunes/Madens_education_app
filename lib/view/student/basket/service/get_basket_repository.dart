@@ -8,8 +8,10 @@ class GetBasketRepository {
   final _token = Hive.box('token');
 
   Future<List<BasketModel>?>? getBasket() async {
+    print("bu kisim calisiyor mu");
     final token = _token.get('myToken');
     const String link = "https://10.0.2.2:7278/api/Basket";
+
     var c = await http.get(
       Uri.parse(link),
       headers: {
@@ -18,8 +20,11 @@ class GetBasketRepository {
         HttpHeaders.authorizationHeader: 'Bearer $token',
       },
     );
+    print("bu ksiimda mi hata var");
+    print(c.body);
 
     if (c.body.isNotEmpty) {
+      print("peki bu kisim calisit mi");
       final json = jsonDecode(c.body)["data"] as List;
       return json.map((e) => BasketModel.fromJson(e)).toList();
     } else {

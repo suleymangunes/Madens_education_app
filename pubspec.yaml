@@ -57,6 +57,10 @@ dependencies:
   # state management
   flutter_bloc: ^8.1.2
 
+  # video player
+  video_player: ^2.6.1
+  chewie: ^1.4.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

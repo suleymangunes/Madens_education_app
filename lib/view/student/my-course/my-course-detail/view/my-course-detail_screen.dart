@@ -132,7 +132,11 @@ class MyCourseDetailCard extends StatelessWidget {
                 Text(model.coursePrice.toString()),
                 Text(model.createdDate.toString()),
                 Text(model.starAvg.toString()),
-                ElevatedButton(onPressed: () {}, child: const Text(""))
+                ElevatedButton(
+                    onPressed: () {
+                      NavigationRoute.goWithInt(RouteEnum.commentPage.rawValue, model.courseID as int);
+                    },
+                    child: const Text("yorumlar"))
               ],
             ),
           ),

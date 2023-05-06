@@ -11,6 +11,7 @@ enum RouteEnum {
   payment,
   myCourseDetail,
   videoPage,
+  commentPage,
 }
 
 extension RouteEnumString on RouteEnum {
@@ -40,6 +41,8 @@ extension RouteEnumString on RouteEnum {
         return '/myCourseDetail';
       case RouteEnum.videoPage:
         return '/videoPage';
+      case RouteEnum.commentPage:
+        return '/commentPage';
     }
   }
 }

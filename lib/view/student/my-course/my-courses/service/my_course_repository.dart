@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 class MyCourseRepository {
   final _token = Hive.box('token');
 
-  Future<List<BasketModel>?>? getMyCourses() async {
+  Future<List<Courses>?>? getMyCourses() async {
     final token = _token.get('myToken');
     const String link = "https://10.0.2.2:7278/api/Basket/listMyCourse";
     var c = await http.get(
@@ -20,10 +20,12 @@ class MyCourseRepository {
       },
     );
 
+    print(c.body);
+
     if (jsonDecode(c.body)["data"] != null) {
       var json = jsonDecode(c.body)["data"] as List;
       print(json);
-      return json.map((e) => BasketModel.fromJson(e)).toList();
+      return json.map((e) => Courses.fromJson(e)).toList();
     } else {
       return null;
     }

@@ -8,7 +8,10 @@ class GetBasketCubit extends Cubit<IGetBasketState> {
   Future<void> getBasket() async {
     try {
       emit(GetBasketLoading());
+      print("sepete hic gelmiyor");
       final response = await GetBasketRepository().getBasket();
+
+      print("sepete gelirken hata olusuyor");
 
       if (response != null) {
         emit(GetBasketCompleted(response));

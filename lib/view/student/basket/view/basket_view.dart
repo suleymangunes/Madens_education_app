@@ -71,17 +71,19 @@ class BasketListBuilder extends StatelessWidget {
             shrinkWrap: true,
             itemCount: data.basketList.length,
             itemBuilder: (BuildContext context, int index) {
-              final model = data.basketList[index].courses?[0];
+              // print(data.basketList[index].courses?[0].courseName);
+              final model = data.basketList[index];
               return BasketCard(
-                courseName: model?.courseName.toString() ?? "",
-                courseDescription: model?.courseDescription.toString() ?? "",
-                price: model?.coursePrice.toString() ?? "",
-                date: model?.createdDate.toString() ?? "",
-                imageurl: model?.imageUrl.toString() ?? "",
-                id: model?.id ?? 1,
-                teacherName: model?.teacherName.toString() ?? "",
-                basketId: data.basketList[index].basketId,
+                courseName: model.courseName.toString() ?? "",
+                courseDescription: model.courseDescription.toString() ?? "",
+                price: model.coursePrice.toString() ?? "",
+                date: model.createdDate.toString() ?? "",
+                imageurl: "https://10.0.2.2:7278/${model.imageUrl}" ?? "",
+                id: model.courseID ?? 1,
+                teacherName: model.teacherName.toString() ?? "",
+                basketId: model.courseID,
               );
+              // return const Text("data");
             },
           ),
         ),
@@ -146,8 +148,9 @@ class BasketCard extends StatelessWidget {
             Text(date),
             ElevatedButton(
               onPressed: () async {
-                GetBasketRepository().removeItemFromBasket(basketId as int);
-                await Future.delayed(const Duration(milliseconds: 100));
+                print("id degerimiz sudur: $id");
+                GetBasketRepository().removeItemFromBasket(id as int);
+                await Future.delayed(const Duration(milliseconds: 200));
                 context.read<GetBasketCubit>().getBasket();
               },
               child: const Text("Sepetten Kaldır"),

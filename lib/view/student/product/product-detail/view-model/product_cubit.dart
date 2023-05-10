@@ -9,7 +9,9 @@ class ProductDetailCubit extends Cubit<IProductState> {
   Future<void> getProduct({required id}) async {
     try {
       emit(ProductLoadingState());
+      print("hata burada");
       final ProductModel model = await ProductRepository().getCourse(id: id);
+      print("peki ya burada ");
       emit(ProductCompletedState(model));
     } catch (e) {
       emit(ProductErrorState());

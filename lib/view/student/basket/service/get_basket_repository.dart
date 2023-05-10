@@ -7,8 +7,7 @@ import 'package:http/http.dart' as http;
 class GetBasketRepository {
   final _token = Hive.box('token');
 
-  Future<List<BasketModel>?>? getBasket() async {
-    print("bu kisim calisiyor mu");
+  Future<List<Courses>?>? getBasket() async {
     final token = _token.get('myToken');
     const String link = "https://10.0.2.2:7278/api/Basket";
 
@@ -20,21 +19,25 @@ class GetBasketRepository {
         HttpHeaders.authorizationHeader: 'Bearer $token',
       },
     );
-    print("bu ksiimda mi hata var");
+
+    print("buraya geliyor ancak isi bos");
+
     print(c.body);
 
     if (c.body.isNotEmpty) {
       print("peki bu kisim calisit mi");
-      final json = jsonDecode(c.body)["data"] as List;
-      return json.map((e) => BasketModel.fromJson(e)).toList();
+      final json = jsonDecode(c.body)["data"][0]["courses"] as List;
+      print(json);
+
+      return json.map((e) => Courses.fromJson(e)).toList();
     } else {
       return null;
     }
   }
 
-  void removeItemFromBasket(int basketId) async {
+  void removeItemFromBasket(int courseId) async {
     final token = _token.get('myToken');
-    final String link = "https://10.0.2.2:7278/api/Basket/$basketId";
+    final String link = "https://10.0.2.2:7278/api/Basket/$courseId";
     await http.delete(
       Uri.parse(link),
       headers: {

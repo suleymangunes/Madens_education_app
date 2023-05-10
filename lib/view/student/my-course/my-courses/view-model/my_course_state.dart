@@ -16,7 +16,7 @@ class MyCourseLoading extends IMyCourseState {
 }
 
 class MyCourseCompleted extends IMyCourseState {
-  final List<BasketModel> response;
+  final List<Courses> response;
   MyCourseCompleted(this.response) : super(status: GetCourseEnum.completed);
 
   @override

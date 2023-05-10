@@ -83,7 +83,7 @@ class _SearchViewState extends State<SearchView> {
         var data = response.responseList[index];
         return CourseCard(
           path: RouteEnum.productDetail.rawValue,
-          id: data.id,
+          id: data.courseID,
           courseName: data.courseName.toString(),
           courseDescription: data.courseDescription.toString(),
           price: data.coursePrice.toString(),

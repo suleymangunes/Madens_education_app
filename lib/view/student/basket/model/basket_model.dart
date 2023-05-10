@@ -38,8 +38,8 @@ class Courses {
   String? courseName;
   String? courseDescription;
   String? imageUrl;
-  double? coursePrice;
-  double? starAvg;
+  num? coursePrice;
+  num? starAvg;
   String? createdDate;
   String? teacherName;
   int? categoryId;
@@ -82,7 +82,7 @@ class Courses {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['courseID'] = courseID;
     data['courseName'] = courseName;
     data['courseDescription'] = courseDescription;

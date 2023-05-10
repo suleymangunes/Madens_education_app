@@ -45,7 +45,7 @@ class MycCourseListBuilder extends StatelessWidget {
     return ListView.builder(
       itemCount: response.response.length,
       itemBuilder: (BuildContext context, int index) {
-        final model = response.response[index].courses![0];
+        final model = response.response[index];
         // return Text(model.courseName.toString());
 
         return CourseCard(

@@ -3,8 +3,8 @@ class ProductModel {
   String? courseName;
   String? courseDescription;
   String? imageUrl;
-  double? coursePrice;
-  double? starAvg;
+  num? coursePrice;
+  num? starAvg;
   String? createdDate;
   String? teacherName;
   int? categoryId;

@@ -117,7 +117,7 @@ class CourseCard extends StatelessWidget {
             ],
           ),
           trailing: LisstileImage(
-            image: imageurl,
+            image: "https://10.0.2.2:7278$imageurl",
           ),
         ),
       ),

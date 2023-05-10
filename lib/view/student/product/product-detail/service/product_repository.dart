@@ -21,7 +21,11 @@ class ProductRepository {
       },
     );
 
+    print(c.body);
+
     var json = jsonDecode(c.body)["data"];
+
+    print(json);
 
     return ProductModel.fromJson(json);
   }

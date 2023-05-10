@@ -59,7 +59,7 @@ class MyCourseDetailCompletedScreen extends StatelessWidget {
             ),
             Align(
               child: Image.network(
-                model.imageUrl.toString(),
+                "https://10.0.2.2:7278/${model.imageUrl}",
                 height: context.height * 0.35,
                 fit: BoxFit.cover,
                 alignment: Alignment.center,

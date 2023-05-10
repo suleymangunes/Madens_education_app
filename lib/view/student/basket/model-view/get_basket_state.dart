@@ -18,7 +18,7 @@ class GetBasketLoading extends IGetBasketState {
 }
 
 class GetBasketCompleted extends IGetBasketState {
-  final List<BasketModel> basketList;
+  final List<Courses> basketList;
   GetBasketCompleted(this.basketList) : super(status: GetCourseEnum.completed);
 
   @override

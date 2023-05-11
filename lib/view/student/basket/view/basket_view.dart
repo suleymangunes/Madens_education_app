@@ -74,13 +74,13 @@ class BasketListBuilder extends StatelessWidget {
               // print(data.basketList[index].courses?[0].courseName);
               final model = data.basketList[index];
               return BasketCard(
-                courseName: model.courseName.toString() ?? "",
-                courseDescription: model.courseDescription.toString() ?? "",
-                price: model.coursePrice.toString() ?? "",
-                date: model.createdDate.toString() ?? "",
-                imageurl: "https://10.0.2.2:7278/${model.imageUrl}" ?? "",
+                courseName: model.courseName.toString(),
+                courseDescription: model.courseDescription.toString(),
+                price: model.coursePrice.toString(),
+                date: model.createdDate.toString(),
+                imageurl: "https://10.0.2.2:7278/${model.imageUrl}",
                 id: model.courseID ?? 1,
-                teacherName: model.teacherName.toString() ?? "",
+                teacherName: model.teacherName.toString(),
                 basketId: model.courseID,
               );
               // return const Text("data");

@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:education_app_like_udemy/view/student/basket/model/basket_model.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
@@ -20,7 +19,6 @@ class TeacherRepository {
       },
     );
     List json = jsonDecode(c.body)["data"]["courses"] as List;
-
     return json.map((e) => Courses.fromJson(e)).toList();
   }
 }

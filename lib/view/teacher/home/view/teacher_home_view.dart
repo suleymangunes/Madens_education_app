@@ -51,7 +51,7 @@ class TacherCourseListBuilder extends StatelessWidget {
           imageurl: model.imageUrl.toString(),
           id: model.courseID,
           teacherName: model.teacherName.toString(),
-          path: RouteEnum.myCourseDetail.rawValue,
+          path: RouteEnum.teacherCourseDetailPage.rawValue,
         );
       },
     );

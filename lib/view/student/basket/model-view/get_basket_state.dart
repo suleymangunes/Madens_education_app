@@ -21,6 +21,14 @@ class GetBasketCompleted extends IGetBasketState {
   final List<Courses> basketList;
   GetBasketCompleted(this.basketList) : super(status: GetCourseEnum.completed);
 
+  num getTotalPrice() {
+    num totalPrice = 0;
+    for (var i in basketList) {
+      totalPrice = totalPrice + (i.coursePrice as num);
+    }
+    return totalPrice;
+  }
+
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;

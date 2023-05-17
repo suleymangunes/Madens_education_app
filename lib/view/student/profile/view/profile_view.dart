@@ -34,44 +34,38 @@ class ProfileView extends StatelessWidget {
           ),
           context.largeSpace,
           const SettingView(),
-          Card(
-            child: InkWell(
-              onTap: () {},
-              child: const ListTile(
-                leading: Icon(
-                  Icons.key_off_outlined,
-                ),
-                title: Text("Şifre değiştir"),
+          InkWell(
+            onTap: () {},
+            child: const ListTile(
+              leading: Icon(
+                Icons.key_off_outlined,
               ),
+              title: Text("Şifre değiştir"),
             ),
           ),
-          Card(
-            child: InkWell(
-              onTap: () {
-                hesapSil();
-              },
-              child: const ListTile(
-                leading: Icon(
-                  Icons.delete_forever_outlined,
-                ),
-                title: Text("Hesap Sil"),
+          InkWell(
+            onTap: () {
+              hesapSil();
+            },
+            child: const ListTile(
+              leading: Icon(
+                Icons.delete_forever_outlined,
               ),
+              title: Text("Hesap Sil"),
             ),
           ),
-          Card(
-            child: InkWell(
-              onTap: () {
-                LoginCaching.signout();
-                LoginCaching.deleteToken();
-                NavigationRoute.goRouteClear(RouteEnum.userRole.rawValue);
-                context.read<WaitedLoginCubit>().readOnlyFalse();
-              },
-              child: const ListTile(
-                leading: Icon(
-                  Icons.exit_to_app_outlined,
-                ),
-                title: Text("Çıkış Yap"),
+          InkWell(
+            onTap: () {
+              LoginCaching.signout();
+              LoginCaching.deleteToken();
+              NavigationRoute.goRouteClear(RouteEnum.userRole.rawValue);
+              context.read<WaitedLoginCubit>().readOnlyFalse();
+            },
+            child: const ListTile(
+              leading: Icon(
+                Icons.exit_to_app_outlined,
               ),
+              title: Text("Çıkış Yap"),
             ),
           ),
         ],

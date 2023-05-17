@@ -1,6 +1,10 @@
+import 'package:education_app_like_udemy/core/components/text/text_body_medium.dart';
+import 'package:education_app_like_udemy/core/components/text/text_title_large_normal.dart';
+import 'package:education_app_like_udemy/core/components/text/text_title_medium.dart';
 import 'package:education_app_like_udemy/core/init/navigation/navigation_route.dart';
 import 'package:education_app_like_udemy/product/constants/api/api_constants.dart';
 import 'package:education_app_like_udemy/view/_product/enum/route/route_enum.dart';
+import 'package:education_app_like_udemy/view/_product/widget/animation/lottie_loading_button.dart';
 import 'package:education_app_like_udemy/view/student/my-course/my-course-detail/view-model/my_course_detail_cubit.dart';
 import 'package:education_app_like_udemy/view/student/my-course/my-course-detail/view-model/my_course_detail_state.dart';
 import 'package:education_app_like_udemy/view/student/product/product-detail/model/product_model.dart';
@@ -30,7 +34,7 @@ class MyCourseDetailScreen extends StatelessWidget {
                 case GetCourseEnum.initial:
                   return const Text("this is initial");
                 case GetCourseEnum.loading:
-                  return const Text("this is loading");
+                  return const Center(child: LottieBigLoadingButton());
                 case GetCourseEnum.completed:
                   return MyCourseDetailCompletedScreen(model: (state as MyCourseDetailCompletedState).response);
                 case GetCourseEnum.error:
@@ -121,20 +125,24 @@ class MyCourseDetailCard extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: context.height * 0.2,
+            height: context.height * 0.22,
             width: context.width * 0.7,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text(model.courseName.toString()),
-                Text(model.courseDescription.toString()),
-                Text(model.coursePrice.toString()),
-                Text(model.createdDate.toString()),
-                Text(model.starAvg.toString()),
-                ElevatedButton(
-                    onPressed: () {
-                      NavigationRoute.goWithInt(RouteEnum.commentPage.rawValue, model.courseID as int);
-                    },
-                    child: const Text("yorumlar"))
+                TextTitleLarge(text: model.courseName.toString()),
+                TextTitleMedium(text: model.courseDescription.toString()),
+                TextBodyMedium(text: model.teacherName.toString()),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const TextBodyMedium(text: "İlerleme Durumu: "),
+                    Image.asset(
+                      "assets/images/progress.png",
+                      height: 60,
+                    )
+                  ],
+                ),
               ],
             ),
           ),

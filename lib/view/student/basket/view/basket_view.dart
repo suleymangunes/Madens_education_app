@@ -1,6 +1,12 @@
 import 'package:education_app_like_udemy/core/components/image/listtile_image.dart';
+import 'package:education_app_like_udemy/core/components/text/text_body_medium.dart';
+import 'package:education_app_like_udemy/core/components/text/text_title_large_normal.dart';
+import 'package:education_app_like_udemy/core/components/text/text_with_theme_color.dart';
 import 'package:education_app_like_udemy/core/extension/context/context_extension.dart';
 import 'package:education_app_like_udemy/core/init/navigation/navigation_route.dart';
+import 'package:education_app_like_udemy/product/constants/api/api_constants.dart';
+import 'package:education_app_like_udemy/product/widget/text/card_title_text.dart';
+import 'package:education_app_like_udemy/product/widget/text/text_price.dart';
 import 'package:education_app_like_udemy/view/_product/enum/route/route_enum.dart';
 import 'package:education_app_like_udemy/view/_product/widget/animation/lottie_loading_button.dart';
 import 'package:education_app_like_udemy/view/student/basket/model-view/get_basket_cubit.dart';
@@ -18,12 +24,7 @@ class BasketView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          elevation: 0,
-          title: Text(
-            "Basket",
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          backgroundColor: Colors.white,
+          title: const TextTitleLarge(text: "Basket"),
         ),
         body: BlocProvider(
           create: (context) => GetBasketCubit()..getBasket(),
@@ -71,14 +72,13 @@ class BasketListBuilder extends StatelessWidget {
             shrinkWrap: true,
             itemCount: data.basketList.length,
             itemBuilder: (BuildContext context, int index) {
-              // print(data.basketList[index].courses?[0].courseName);
               final model = data.basketList[index];
               return BasketCard(
                 courseName: model.courseName.toString(),
                 courseDescription: model.courseDescription.toString(),
                 price: model.coursePrice.toString(),
                 date: model.createdDate.toString(),
-                imageurl: "https://10.0.2.2:7278/${model.imageUrl}",
+                imageurl: "${ApiConstants.baseUrl}${model.imageUrl}",
                 id: model.courseID ?? 1,
                 teacherName: model.teacherName.toString(),
                 basketId: model.courseID,
@@ -90,13 +90,24 @@ class BasketListBuilder extends StatelessWidget {
         Expanded(
           flex: 1,
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              const Text("fiyat su kadar vs"),
+              Row(
+                children: [
+                  const TextMediumTitle(text: "Toptal Price: "),
+                  Text(
+                    "\$${data.getTotalPrice().toString()}",
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                ],
+              ),
               ElevatedButton(
                 onPressed: () {
                   NavigationRoute.goRouteNormal(RouteEnum.payment.rawValue);
                 },
-                child: const Text("satin al"),
+                child: const TextMediumTitle(text: "Satın Al"),
               ),
             ],
           ),
@@ -131,33 +142,34 @@ class BasketCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: EdgeInsets.symmetric(horizontal: context.lowValue, vertical: context.lowValue),
-      child: ListTile(
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              courseName,
-              style: Theme.of(context).textTheme.titleLarge,
+      child: Row(
+        children: [
+          context.cardxSmallSpace,
+          LisstileImage(
+            image: imageurl,
+          ),
+          context.cardSmallSpace,
+          SizedBox(
+            height: context.cardContentSize,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CardTitleText(courseName: courseName),
+                TextBodyMedium(text: teacherName),
+                TextPrice(price: price),
+                ElevatedButton(
+                  onPressed: () async {
+                    GetBasketRepository().removeItemFromBasket(id as int);
+                    await Future.delayed(const Duration(milliseconds: 200));
+                    context.read<GetBasketCubit>().getBasket();
+                  },
+                  child: const Text("Sepetten Kaldır"),
+                ),
+              ],
             ),
-            Text(
-              courseDescription,
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            Text(teacherName),
-            Text(price),
-            Text(date),
-            ElevatedButton(
-              onPressed: () async {
-                print("id degerimiz sudur: $id");
-                GetBasketRepository().removeItemFromBasket(id as int);
-                await Future.delayed(const Duration(milliseconds: 200));
-                context.read<GetBasketCubit>().getBasket();
-              },
-              child: const Text("Sepetten Kaldır"),
-            ),
-          ],
-        ),
-        trailing: LisstileImage(image: imageurl),
+          ),
+        ],
       ),
     );
   }

@@ -1,5 +1,7 @@
+import 'package:education_app_like_udemy/core/components/text/text_title_large_normal.dart';
 import 'package:education_app_like_udemy/product/widget/card/course_card.dart';
 import 'package:education_app_like_udemy/view/_product/enum/route/route_enum.dart';
+import 'package:education_app_like_udemy/view/_product/widget/animation/lottie_loading_button.dart';
 import 'package:education_app_like_udemy/view/student/my-course/my-courses/view-model/my_course_cubit.dart';
 import 'package:education_app_like_udemy/view/student/my-course/my-courses/view-model/my_course_state.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +15,7 @@ class MyCourseView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("My Course"),
+        title: const TextTitleLarge(text: "My Courses"),
       ),
       body: BlocProvider(
         create: (context) => MyCourseCubit()..getMyCourses(),
@@ -23,7 +25,7 @@ class MyCourseView extends StatelessWidget {
               case GetCourseEnum.initial:
                 return const Text("this is initial");
               case GetCourseEnum.loading:
-                return const Text("this is loading");
+                return const Center(child: LottieBigLoadingButton());
               case GetCourseEnum.completed:
                 return MycCourseListBuilder(response: state as MyCourseCompleted);
               case GetCourseEnum.error:

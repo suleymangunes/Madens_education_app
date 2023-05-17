@@ -1,3 +1,4 @@
+import 'package:education_app_like_udemy/core/init/theme/light/light_theme_custom.dart';
 import 'package:education_app_like_udemy/view/_product/enum/get-course/get_course_enum.dart';
 import 'package:education_app_like_udemy/view/_product/widget/animation/lottie_loading_button.dart';
 import 'package:education_app_like_udemy/view/student/product/add-basket/model-view/basket_cubit.dart';
@@ -21,7 +22,7 @@ class AddToBasketButton extends StatelessWidget {
                 onPressed: () {
                   context.read<AddBasketCubit>().addToBasket(courseId);
                 },
-                child: const Text("sepete ekle"),
+                child: const Text("Sepete Ekle"),
               );
             case GetCourseEnum.loading:
               return const ElevatedButton(
@@ -29,14 +30,21 @@ class AddToBasketButton extends StatelessWidget {
                 child: LottieBigLoadingButton(),
               );
             case GetCourseEnum.completed:
-              return const ElevatedButton(
+              return ElevatedButton(
                 onPressed: null,
-                child: Text("sepete eklendi"),
+                style: ElevatedButton.styleFrom(
+                  disabledForegroundColor: Colors.white,
+                  disabledBackgroundColor: LightThemeColors.scarlet,
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: const [Text("Sepete Eklendi"), Icon(Icons.done)],
+                ),
               );
             case GetCourseEnum.error:
               return const ElevatedButton(
                 onPressed: null,
-                child: Text("bir sorun oluştu tekrar dene"),
+                child: Text("Tekrar Dene"),
               );
           }
         },

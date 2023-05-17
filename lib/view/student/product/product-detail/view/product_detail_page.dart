@@ -1,6 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'package:education_app_like_udemy/core/components/text/text_body_medium.dart';
+import 'package:education_app_like_udemy/core/components/text/text_title_large_normal.dart';
+import 'package:education_app_like_udemy/core/components/text/text_title_medium.dart';
 import 'package:education_app_like_udemy/product/constants/api/api_constants.dart';
+import 'package:education_app_like_udemy/product/widget/text/text_price.dart';
 import 'package:education_app_like_udemy/view/student/product/add-basket/view/add_to_basket_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -62,7 +66,7 @@ class ProductDetailScreen extends StatelessWidget {
             ),
             Align(
               child: Image.network(
-                "https://10.0.2.2:7278/${model.imageUrl}",
+                "${ApiConstants.baseUrl}${model.imageUrl}",
                 height: context.height * 0.35,
                 fit: BoxFit.cover,
                 alignment: Alignment.center,
@@ -75,10 +79,6 @@ class ProductDetailScreen extends StatelessWidget {
             )
           ],
         ),
-        // Text(model.courseDescription.toString()),
-        // Text(model.courseName.toString()),
-        // Text(model.coursePrice.toString()),
-        // Text(model.createdDate.toString()),,
         context.smallSpace,
         Text(
           "Müfredat",
@@ -120,15 +120,16 @@ class ProductDetailCard extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: context.height * 0.2,
+            height: context.height * 0.22,
             width: context.width * 0.7,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(model.courseName.toString()),
-                Text(model.courseDescription.toString()),
-                Text(model.coursePrice.toString()),
-                Text(model.createdDate.toString()),
-                Text(model.starAvg.toString()),
+                TextTitleLarge(text: model.courseName.toString()),
+                TextTitleMedium(text: model.courseDescription.toString()),
+                TextBodyMedium(text: model.teacherName.toString()),
+                TextPrice(price: model.coursePrice.toString()),
                 AddToBasketButton(courseId: model.courseID),
               ],
             ),

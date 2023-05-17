@@ -14,6 +14,9 @@ class LightThemeCustom {
       brightness: Brightness.light,
       primarySwatch: BuildColor().buildMaterialColor(LightThemeColors.scarlet),
       appBarTheme: const AppBarTheme(
+        iconTheme: IconThemeData(
+          color: Colors.black54,
+        ),
         backgroundColor: ColorCommons.white,
         elevation: 0,
         systemOverlayStyle: SystemUiOverlayStyle(

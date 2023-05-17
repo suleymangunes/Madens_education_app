@@ -1,4 +1,5 @@
 import 'package:education_app_like_udemy/core/init/navigation/navigation_route.dart';
+import 'package:education_app_like_udemy/product/constants/api/api_constants.dart';
 import 'package:education_app_like_udemy/view/_product/enum/route/route_enum.dart';
 import 'package:education_app_like_udemy/view/student/my-course/my-course-detail/view-model/my_course_detail_cubit.dart';
 import 'package:education_app_like_udemy/view/student/my-course/my-course-detail/view-model/my_course_detail_state.dart';
@@ -59,7 +60,7 @@ class MyCourseDetailCompletedScreen extends StatelessWidget {
             ),
             Align(
               child: Image.network(
-                "https://10.0.2.2:7278/${model.imageUrl}",
+                "${ApiConstants.baseUrl}${model.imageUrl}",
                 height: context.height * 0.35,
                 fit: BoxFit.cover,
                 alignment: Alignment.center,
@@ -72,10 +73,6 @@ class MyCourseDetailCompletedScreen extends StatelessWidget {
             )
           ],
         ),
-        // Text(model.courseDescription.toString()),
-        // Text(model.courseName.toString()),
-        // Text(model.coursePrice.toString()),
-        // Text(model.createdDate.toString()),,
         context.smallSpace,
         Text(
           "Müfredat",
@@ -93,11 +90,12 @@ class MyCourseDetailCompletedScreen extends StatelessWidget {
                   title: Text(model.curriculums?[index].title.toString() ?? ""),
                   subtitle: Text(model.curriculums?[index].description.toString() ?? ""),
                   trailing: IconButton(
-                      onPressed: () {
-                        NavigationRoute.goRouteNormalWithParam(
-                            RouteEnum.videoPage.rawValue, model.curriculums?[index].videoUrl.toString() as String);
-                      },
-                      icon: const Icon(Icons.videocam_outlined)),
+                    onPressed: () {
+                      NavigationRoute.goRouteNormalWithParam(
+                          RouteEnum.videoPage.rawValue, model.curriculums?[index].videoUrl.toString() as String);
+                    },
+                    icon: const Icon(Icons.videocam_outlined),
+                  ),
                 ),
               );
             },

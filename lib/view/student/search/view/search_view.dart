@@ -1,4 +1,5 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:education_app_like_udemy/core/extension/context/context_extension.dart';
+import 'package:education_app_like_udemy/core/extension/padding/padding_extension.dart';
 import 'package:education_app_like_udemy/product/widget/card/course_card.dart';
 import 'package:education_app_like_udemy/view/_product/enum/route/route_enum.dart';
 import 'package:education_app_like_udemy/view/_product/enum/search/search_enum.dart';
@@ -38,10 +39,20 @@ class _SearchViewState extends State<SearchView> {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              title: TextField(
-                enabled: _ableField(state),
-                autofocus: true,
-                controller: _searchController,
+              title: SizedBox(
+                height: kToolbarHeight,
+                width: context.appBarWidth,
+                child: Padding(
+                  padding: context.smallPadding,
+                  child: TextField(
+                    decoration: const InputDecoration(
+                      hintText: "Search something...",
+                    ),
+                    enabled: _ableField(state),
+                    autofocus: true,
+                    controller: _searchController,
+                  ),
+                ),
               ),
               actions: [
                 IconButton(

@@ -9,7 +9,7 @@ class TeacherRepository {
 
   Future<List<Courses>> getAllCourses() async {
     final String token = _token.get('myToken');
-    const String link = "https://10.0.2.2:7278/api/Course/GetAll?page=1";
+    const String link = "https://10.0.2.2:7278/api/teacher";
     var c = await http.get(
       Uri.parse(link),
       headers: {
@@ -18,7 +18,7 @@ class TeacherRepository {
         HttpHeaders.authorizationHeader: 'Bearer $token',
       },
     );
-    List json = jsonDecode(c.body)["data"]["courses"] as List;
+    List json = jsonDecode(c.body)["data"] as List;
     return json.map((e) => Courses.fromJson(e)).toList();
   }
 }

@@ -18,6 +18,11 @@ extension MediaQueryExtension on BuildContext {
 
   double get introImageTitle => height * 0.65;
   double get textFieldWidht => width * 0.8;
+
+  double get appBarWidth => width * 0.7;
+
+  double get cardTitleArea => width * 0.58;
+  double get cardContentSize => width * 0.35;
 }
 
 extension SizedSpaceBoxExtension on BuildContext {
@@ -28,6 +33,8 @@ extension SizedSpaceBoxExtension on BuildContext {
   SizedBox get mediumSpace => SizedBox(height: height * 0.04);
   SizedBox get largeSpace => SizedBox(height: height * 0.08);
   SizedBox get bigSpace => SizedBox(height: height * 0.12);
+  SizedBox get cardSmallSpace => SizedBox(width: width * 0.02);
+  SizedBox get cardxSmallSpace => SizedBox(width: width * 0.01);
 }
 
 extension LottieExtension on BuildContext {

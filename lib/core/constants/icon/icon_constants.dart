@@ -11,4 +11,5 @@ class IconConstants {
   static const Icon home = Icon(Icons.home_outlined);
   static const Icon basket = Icon(Icons.shopping_basket_outlined);
   static const Icon person = Icon(Icons.person_outline_outlined);
+  static const Icon search = Icon(Icons.search);
 }

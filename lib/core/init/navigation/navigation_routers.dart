@@ -13,6 +13,7 @@ import 'package:education_app_like_udemy/view/student/my-course/video/view/video
 import 'package:education_app_like_udemy/view/student/payment/view/payment_view.dart';
 import 'package:education_app_like_udemy/view/student/product/product-detail/view/product_detail_page.dart';
 import 'package:education_app_like_udemy/view/student/search/view/search_view.dart';
+import 'package:education_app_like_udemy/view/teacher/add-course/view/add_course_view.dart';
 import 'package:education_app_like_udemy/view/teacher/home/view/teacher_home_page.dart';
 import 'package:education_app_like_udemy/view/teacher/product/product-detail/view/teacher_course_detail_page.dart';
 import 'package:go_router/go_router.dart';
@@ -104,6 +105,10 @@ class NavigationRouters {
           int id = state.extra as int;
           return TeacherCourseDetailPage(id: id);
         },
+      ),
+      GoRoute(
+        path: RouteEnum.addCourseView.rawValue,
+        builder: (context, state) => const AddCourseView(),
       ),
     ],
   );

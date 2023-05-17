@@ -1,5 +1,5 @@
+import 'package:education_app_like_udemy/product/widget/card/course_card.dart';
 import 'package:education_app_like_udemy/view/_product/enum/route/route_enum.dart';
-import 'package:education_app_like_udemy/view/student/home/view/home_view.dart';
 import 'package:education_app_like_udemy/view/student/my-course/my-courses/view-model/my_course_cubit.dart';
 import 'package:education_app_like_udemy/view/student/my-course/my-courses/view-model/my_course_state.dart';
 import 'package:flutter/material.dart';

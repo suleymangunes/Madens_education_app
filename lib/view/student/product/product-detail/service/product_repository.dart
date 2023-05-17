@@ -11,7 +11,6 @@ class ProductRepository {
   Future<ProductModel> getCourse({required id}) async {
     final token = _token.get('myToken');
     final String link = "https://10.0.2.2:7278/api/Course/listCourse/$id";
-    print("bu kisma kadar sorun yok");
     var c = await http.get(
       Uri.parse(link),
       headers: {

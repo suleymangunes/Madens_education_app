@@ -1,4 +1,5 @@
 import 'package:education_app_like_udemy/core/init/theme/build-material-color/build_color.dart';
+import 'package:education_app_like_udemy/core/init/theme/commons/color_commons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -13,6 +14,8 @@ class LightThemeCustom {
       brightness: Brightness.light,
       primarySwatch: BuildColor().buildMaterialColor(LightThemeColors.scarlet),
       appBarTheme: const AppBarTheme(
+        backgroundColor: ColorCommons.white,
+        elevation: 0,
         systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: LightThemeColors.scarlet,
           statusBarIconBrightness: Brightness.dark,

@@ -131,7 +131,7 @@ class MyCourseDetailCard extends StatelessWidget {
                       // TODO kursu kaldır
                       // NavigationRoute.goWithInt(RouteEnum.commentPage.rawValue, model.courseID as int);
                     },
-                    child: const Text("kursu kaldir"))
+                    child: const Text("ksursu kaldir"))
               ],
             ),
           ),

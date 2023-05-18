@@ -24,6 +24,7 @@ class BasketView extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: const TextTitleLarge(text: "Basket"),
         ),
         body: BlocProvider(

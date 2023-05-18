@@ -13,7 +13,7 @@ class TextTitleMediumSlim extends StatelessWidget {
       text,
       style: Theme.of(context).textTheme.titleMedium?.copyWith(
             fontWeight: FontWeight.w300,
-            color: Colors.black54,
+            color: Theme.of(context).hintColor,
           ),
     );
   }

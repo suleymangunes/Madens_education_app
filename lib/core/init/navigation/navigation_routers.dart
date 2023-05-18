@@ -9,6 +9,7 @@ import 'package:education_app_like_udemy/view/auth/login/view/login_page.dart';
 import 'package:education_app_like_udemy/view/settings/view/setting_view.dart';
 import 'package:education_app_like_udemy/view/student/my-course/comment/view/comment_page.dart';
 import 'package:education_app_like_udemy/view/student/my-course/my-course-detail/view/my-course-detail_screen.dart';
+import 'package:education_app_like_udemy/view/student/my-course/my-courses/view/my_course_view.dart';
 import 'package:education_app_like_udemy/view/student/my-course/video/view/video_page.dart';
 import 'package:education_app_like_udemy/view/student/payment/view/payment_view.dart';
 import 'package:education_app_like_udemy/view/student/product/product-detail/view/product_detail_page.dart';
@@ -58,6 +59,10 @@ class NavigationRouters {
       GoRoute(
         path: RouteEnum.setting.rawValue,
         builder: (context, state) => const SettingView(),
+      ),
+      GoRoute(
+        path: RouteEnum.mycourseview.rawValue,
+        builder: (context, state) => const MyCourseView(),
       ),
       GoRoute(
         path: RouteEnum.studentSearch.rawValue,

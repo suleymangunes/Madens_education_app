@@ -61,6 +61,9 @@ dependencies:
   video_player: ^2.6.1
   chewie: ^1.4.0
 
+  # credit card
+  flutter_credit_card: ^3.0.6
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

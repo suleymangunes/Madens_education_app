@@ -8,6 +8,7 @@ enum RouteEnum {
   teacherHomePage,
   studentSearch,
   productDetail,
+  mycourseview,
   payment,
   myCourseDetail,
   videoPage,
@@ -49,6 +50,8 @@ extension RouteEnumString on RouteEnum {
         return '/teacherCourseDetailPage';
       case RouteEnum.addCourseView:
         return '/addCourseView';
+      case RouteEnum.mycourseview:
+        return '/myCourseView';
     }
   }
 }

@@ -15,6 +15,7 @@ class MyCourseView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const TextTitleLarge(text: "My Courses"),
       ),
       body: BlocProvider(

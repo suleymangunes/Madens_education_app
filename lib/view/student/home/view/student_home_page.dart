@@ -1,5 +1,6 @@
 import 'package:education_app_like_udemy/core/constants/icon/icon_constants.dart';
 import 'package:education_app_like_udemy/core/constants/string/string_constants.dart';
+import 'package:education_app_like_udemy/core/init/theme/light/light_theme_custom.dart';
 import 'package:education_app_like_udemy/view/_product/screen-list/student/studen_screen_list.dart';
 import 'package:education_app_like_udemy/view/student/home/view-model/bottom-navbar/bottom_nav_index_cubit.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,7 @@ class StudentHomePage extends StatelessWidget {
 
   BottomNavigationBar _bottomNavBar(int state, BuildContext context) {
     return BottomNavigationBar(
+      fixedColor: LightThemeColors.scarlet,
       type: BottomNavigationBarType.fixed,
       currentIndex: state,
       onTap: (value) {

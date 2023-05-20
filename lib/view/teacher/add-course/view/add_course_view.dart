@@ -1,10 +1,11 @@
-import 'dart:convert';
-import 'dart:io';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:education_app_like_udemy/core/init/navigation/navigation_route.dart';
+import 'package:education_app_like_udemy/view/_product/enum/route/route_enum.dart';
+import 'package:flutter/material.dart';
 
 import 'package:education_app_like_udemy/view/teacher/add-course/model/add_course_model.dart';
-import 'package:flutter/material.dart';
-import 'package:hive_flutter/adapters.dart';
-import 'package:http/http.dart' as http;
+import 'package:education_app_like_udemy/view/teacher/add-course/service/add_course_service.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddCourseView extends StatefulWidget {
   const AddCourseView({super.key});
@@ -38,75 +39,126 @@ class _AddCourseViewState extends State<AddCourseView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("this is title"),
-      ),
-      body: Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            TextFormField(
-              controller: _nameController,
-              decoration: const InputDecoration(
-                hintText: "name",
+    return BlocProvider(
+      create: (context) => AddCourseCubit(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("this is title"),
+        ),
+        body: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                controller: _nameController,
+                decoration: const InputDecoration(
+                  hintText: "name",
+                ),
               ),
-            ),
-            TextFormField(
-              controller: _descriptionController,
-              decoration: const InputDecoration(
-                hintText: "description",
+              TextFormField(
+                controller: _descriptionController,
+                decoration: const InputDecoration(
+                  hintText: "description",
+                ),
               ),
-            ),
-            TextFormField(
-              decoration: const InputDecoration(
-                hintText: "price",
+              TextFormField(
+                decoration: const InputDecoration(
+                  hintText: "price",
+                ),
+                controller: _priceController,
               ),
-              controller: _priceController,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  print("oldu");
-                  var a = AddCourseModel(
-                    courseName: _nameController.text,
-                    courseDescription: _descriptionController.text,
-                    coursePrice: num.parse(_priceController.text),
-                    imageUrl: "string",
-                    categoryId: 1,
+              BlocConsumer<AddCourseCubit, IAddCourseState>(
+                listener: (context, state) {
+                  if (state is AddCourseLoadingState) {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return const AlertDialog(
+                          title: Center(child: CircularProgressIndicator()),
+                          content: Text("Kurs oluşturuluyor. Lütfen bekleyiniz."),
+                        );
+                      },
+                    );
+                  } else if (state is AddCourseCompletedState) {
+                    NavigationRoute.router.pop();
+                    showDialog(
+                      barrierDismissible: false,
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: const Text("İşlem Başarılı"),
+                          content: const Text("Kursunuz başarıyla oluşturulmuştur."),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                NavigationRoute.goRouteClear(RouteEnum.teacherHomePage.rawValue);
+                              },
+                              child: const Text("Kurslarıma git"),
+                            )
+                          ],
+                        );
+                      },
+                    );
+                    // context.read<TeacherCoursesCubit>().getMyCourses();
+                  }
+                },
+                builder: (context, state) {
+                  return ElevatedButton(
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        print("oldu");
+                        var a = AddCourseModel(
+                          courseName: _nameController.text,
+                          courseDescription: _descriptionController.text,
+                          coursePrice: num.parse(_priceController.text),
+                          imageUrl: "string",
+                          categoryId: 1,
+                        );
+
+                        // AddCourseService().addCourse(addCourseModel: a);
+                        context.read<AddCourseCubit>().addCourse(addCourseModel: a);
+                      }
+                    },
+                    child: const Text("kurs ekle"),
                   );
-                  print(a.courseName);
-                  print(a.courseDescription);
-                  print(a.coursePrice);
-                  var b = a.toJson();
-                  print(b);
-                  AddCourseService().addCourse(a);
-                }
-              },
-              child: const Text("kurs ekle"),
-            )
-          ],
+                },
+              )
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-class AddCourseService {
-  final Box _token = Hive.box('token');
+class AddCourseCubit extends Cubit<IAddCourseState> {
+  AddCourseCubit() : super(AddCourseInitialState());
 
-  addCourse(AddCourseModel addCourseModel) async {
-    var body = jsonEncode(addCourseModel.toJson());
-    final String token = _token.get('myToken');
-
-    const String link = "https://10.0.2.2:7278/api/Course/addCourse";
-    var c = await http.post(Uri.parse(link),
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          HttpHeaders.authorizationHeader: 'Bearer $token',
-        },
-        body: body);
-    print(c.body);
+  Future<void> addCourse({required AddCourseModel addCourseModel}) async {
+    try {
+      emit(AddCourseLoadingState());
+      await AddCourseService().addCourse(addCourseModel: addCourseModel);
+      emit(AddCourseCompletedState());
+    } catch (e) {
+      emit(AddCourseErrorState());
+    }
   }
+}
+
+abstract class IAddCourseState {}
+
+class AddCourseInitialState extends IAddCourseState {
+  AddCourseInitialState() : super();
+}
+
+class AddCourseLoadingState extends IAddCourseState {
+  AddCourseLoadingState() : super();
+}
+
+class AddCourseCompletedState extends IAddCourseState {
+  AddCourseCompletedState() : super();
+}
+
+class AddCourseErrorState extends IAddCourseState {
+  AddCourseErrorState() : super();
 }

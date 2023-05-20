@@ -1,3 +1,4 @@
+import 'package:education_app_like_udemy/core/components/text/text_title_large_normal.dart';
 import 'package:education_app_like_udemy/product/widget/card/course_card.dart';
 import 'package:education_app_like_udemy/view/_product/enum/route/route_enum.dart';
 import 'package:education_app_like_udemy/view/_product/widget/animation/lottie_loading_button.dart';
@@ -14,6 +15,10 @@ class TeacherHomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: const TextTitleLarge(text: "Homepage"),
+      ),
       body: BlocProvider(
         create: (context) => TeacherCoursesCubit()..getMyCourses(),
         child: BlocBuilder<TeacherCoursesCubit, ITeacherCoursesState>(

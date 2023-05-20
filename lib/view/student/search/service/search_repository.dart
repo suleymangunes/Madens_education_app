@@ -9,7 +9,6 @@ class SearchRepository {
   final _token = Hive.box('token');
 
   Future<List<Courses>?>? searchCourses({required String search}) async {
-    await Future.delayed(const Duration(seconds: 5));
     final token = _token.get('myToken');
     print(token);
     print("biz ne arariz $search");

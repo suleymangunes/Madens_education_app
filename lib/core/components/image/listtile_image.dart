@@ -17,7 +17,12 @@ class LisstileImage extends StatelessWidget {
           height: context.width * 0.35,
           fit: BoxFit.cover,
           errorBuilder: (context, error, stackTrace) {
-            return const Icon(Icons.photo);
+            return Image.asset(
+              "assets/icon/icon.png",
+              width: context.width * 0.25,
+              height: context.width * 0.35,
+              fit: BoxFit.fitWidth,
+            );
           },
         ),
       ),

@@ -1,3 +1,4 @@
+import 'package:education_app_like_udemy/core/components/text/text_title_large_normal.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
@@ -8,7 +9,9 @@ class VideoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const TextTitleLarge(text: "Video Page"),
+      ),
       body: Column(
         children: [
           const Text(""),

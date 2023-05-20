@@ -64,6 +64,10 @@ dependencies:
   # credit card
   flutter_credit_card: ^3.0.6
 
+  # image
+  image_picker: ^0.8.7+5
+  dio: ^5.1.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

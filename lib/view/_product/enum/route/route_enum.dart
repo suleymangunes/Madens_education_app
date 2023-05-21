@@ -15,6 +15,7 @@ enum RouteEnum {
   commentPage,
   teacherCourseDetailPage,
   addCourseView,
+  addCurriculumPage,
 }
 
 extension RouteEnumString on RouteEnum {
@@ -52,6 +53,8 @@ extension RouteEnumString on RouteEnum {
         return '/addCourseView';
       case RouteEnum.mycourseview:
         return '/myCourseView';
+      case RouteEnum.addCurriculumPage:
+        return '/addCurriculumPage';
     }
   }
 }

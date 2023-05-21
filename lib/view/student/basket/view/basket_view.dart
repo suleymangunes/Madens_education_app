@@ -161,8 +161,8 @@ class BasketCard extends StatelessWidget {
                 TextPrice(price: price),
                 ElevatedButton(
                   onPressed: () async {
-                    GetBasketRepository().removeItemFromBasket(id as int);
-                    await Future.delayed(const Duration(milliseconds: 200));
+                    await GetBasketRepository().removeItemFromBasket(id as int);
+                    // await Future.delayed(const Duration(milliseconds: 200));
                     context.read<GetBasketCubit>().getBasket();
                   },
                   child: const Text("Sepetten Kaldır"),

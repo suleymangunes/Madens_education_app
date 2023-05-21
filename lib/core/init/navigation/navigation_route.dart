@@ -28,4 +28,9 @@ class NavigationRoute {
   static void goWithInt(String route, int integer) {
     router.pushNamed(route, extra: integer);
   }
+
+  static void goWithIntClear(String route, int integer) {
+    // router.pushReplacementNamed(route, extra: integer);
+    router.replaceNamed(route, extra: integer);
+  }
 }

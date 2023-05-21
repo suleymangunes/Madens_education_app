@@ -1,6 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
-import 'dart:io';
 
 import 'package:education_app_like_udemy/core/components/text/text_title_large_normal.dart';
 import 'package:education_app_like_udemy/core/components/text/text_title_medium.dart';
@@ -19,8 +17,6 @@ import 'package:education_app_like_udemy/view/teacher/product/remove-product/vie
 import 'package:education_app_like_udemy/view/teacher/product/remove-product/view-model/delete_course_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive/hive.dart';
-import 'package:http/http.dart' as http;
 
 class TeacherCourseDetailPage extends StatelessWidget {
   const TeacherCourseDetailPage({super.key, required this.id});
@@ -32,7 +28,10 @@ class TeacherCourseDetailPage extends StatelessWidget {
       child: Scaffold(
         body: BlocProvider(
           create: (context) => TeahcerCourseDetailCubit()..getTeacherCourse(courseId: id),
-          child: BlocBuilder<TeahcerCourseDetailCubit, ITeacherCourseDetailState>(
+          child: BlocConsumer<TeahcerCourseDetailCubit, ITeacherCourseDetailState>(
+            listener: (context, state) {
+              print("yaz bakalim");
+            },
             builder: (context, state) {
               switch (state.status) {
                 case GetCourseEnum.initial:
@@ -116,7 +115,8 @@ class _TeacherCourseDetailViewState extends State<TeacherCourseDetailView> {
             ),
             TextButton(
               onPressed: () {
-                CirruculumService().addCirruculumByCourseId(widget.model.courseID as int);
+                // CirruculumService().addCirruculumByCourseId(widget.model.courseID as int);
+                NavigationRoute.goWithInt(RouteEnum.addCurriculumPage.rawValue, widget.model.courseID as int);
               },
               child: const Text("Ekle"),
             ),
@@ -148,35 +148,6 @@ class _TeacherCourseDetailViewState extends State<TeacherCourseDetailView> {
         // Text(model.curriculums?.length.toString() ?? ""),
       ],
     );
-  }
-}
-
-class CirruculumService {
-  final Box _token = Hive.box('token');
-
-  addCirruculumByCourseId(int courseID) async {
-    Map mapim = {
-      "publishId": "string",
-      "videoName": "string",
-      "videoUrl": "string",
-      "title": "string",
-      "description": "string",
-      "courseID": courseID
-    };
-    var jsonhali = jsonEncode(mapim);
-    var sonhal = jsonDecode(jsonhali);
-    final String token = _token.get('myToken');
-    String link = "https://10.0.2.2:7278/api/Curriculum/createCurri";
-    var c = await http.post(
-      Uri.parse(link),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        HttpHeaders.authorizationHeader: 'Bearer $token',
-      },
-      body: jsonhali,
-    );
-    print(c.body);
   }
 }
 

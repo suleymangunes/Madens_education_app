@@ -29,51 +29,36 @@ class TeacherProfile extends StatelessWidget {
           ),
           context.largeSpace,
           const SettingView(),
-          Card(
-            elevation: 3,
-            margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-            child: InkWell(
-              onTap: () {},
-              child: ListTile(
-                leading: Icon(
-                  Icons.key_off_outlined,
-                  color: Theme.of(context).primaryColor,
-                ),
-                title: const Text("Şifre değiştir"),
+          InkWell(
+            onTap: () {},
+            child: const ListTile(
+              leading: Icon(
+                Icons.key_off_outlined,
               ),
+              title: Text("Şifre değiştir"),
             ),
           ),
-          Card(
-            elevation: 3,
-            margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-            child: InkWell(
-              onTap: () {},
-              child: ListTile(
-                leading: Icon(
-                  Icons.delete_forever_outlined,
-                  color: Theme.of(context).primaryColor,
-                ),
-                title: const Text("Hesap Sil"),
+          InkWell(
+            onTap: () {},
+            child: const ListTile(
+              leading: Icon(
+                Icons.delete_forever_outlined,
               ),
+              title: Text("Hesap Sil"),
             ),
           ),
-          Card(
-            elevation: 3,
-            margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-            child: InkWell(
-              onTap: () {
-                LoginCaching.signout();
-                LoginCaching.deleteToken();
-                NavigationRoute.goRouteClear(RouteEnum.userRole.rawValue);
-                context.read<WaitedLoginCubit>().readOnlyFalse();
-              },
-              child: ListTile(
-                leading: Icon(
-                  Icons.exit_to_app_outlined,
-                  color: Theme.of(context).primaryColor,
-                ),
-                title: const Text("Çıkış Yap"),
+          InkWell(
+            onTap: () {
+              LoginCaching.signout();
+              LoginCaching.deleteToken();
+              NavigationRoute.goRouteClear(RouteEnum.userRole.rawValue);
+              context.read<WaitedLoginCubit>().readOnlyFalse();
+            },
+            child: const ListTile(
+              leading: Icon(
+                Icons.exit_to_app_outlined,
               ),
+              title: Text("Çıkış Yap"),
             ),
           ),
         ],

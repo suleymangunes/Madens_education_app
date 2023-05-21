@@ -35,7 +35,7 @@ class GetBasketRepository {
     }
   }
 
-  void removeItemFromBasket(int courseId) async {
+  Future<void> removeItemFromBasket(int courseId) async {
     final token = _token.get('myToken');
     final String link = "https://10.0.2.2:7278/api/Basket/$courseId";
     await http.delete(

@@ -2,10 +2,10 @@ import 'package:education_app_like_udemy/core/components/text/text_title_large_n
 import 'package:education_app_like_udemy/core/extension/context/context_extension.dart';
 import 'package:education_app_like_udemy/core/init/navigation/navigation_route.dart';
 import 'package:education_app_like_udemy/view/_product/enum/route/route_enum.dart';
-import 'package:education_app_like_udemy/view/teacher/add-course/view-model/add_course_cubit.dart';
-import 'package:education_app_like_udemy/view/teacher/add-course/view-model/add_course_state.dart';
+import 'package:education_app_like_udemy/view/teacher/product/add-course/view-model/add_course_cubit.dart';
+import 'package:education_app_like_udemy/view/teacher/product/add-course/view-model/add_course_state.dart';
 import 'package:flutter/material.dart';
-import 'package:education_app_like_udemy/view/teacher/add-course/model/add_course_model.dart';
+import 'package:education_app_like_udemy/view/teacher/product/add-course/model/add_course_model.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

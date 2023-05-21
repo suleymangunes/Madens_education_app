@@ -2,7 +2,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:dio/dio.dart';
 import 'package:education_app_like_udemy/core/components/text/text_title_large_normal.dart';
 import 'package:education_app_like_udemy/core/components/text/text_title_medium.dart';
 import 'package:education_app_like_udemy/core/extension/context/context_extension.dart';
@@ -11,14 +10,17 @@ import 'package:education_app_like_udemy/product/constants/api/api_constants.dar
 import 'package:education_app_like_udemy/product/widget/text/text_price.dart';
 import 'package:education_app_like_udemy/view/_product/enum/get-course/get_course_enum.dart';
 import 'package:education_app_like_udemy/view/_product/enum/route/route_enum.dart';
+import 'package:education_app_like_udemy/view/_product/widget/animation/lottie_loading_button.dart';
+import 'package:education_app_like_udemy/view/teacher/product/change-image/service/change_image_service.dart';
 import 'package:education_app_like_udemy/view/teacher/product/product-detail/model/teacher_product_model.dart';
 import 'package:education_app_like_udemy/view/teacher/product/product-detail/view-model/teacher_course_detail_cubit.dart';
 import 'package:education_app_like_udemy/view/teacher/product/product-detail/view-model/teacher_course_detail_state.dart';
+import 'package:education_app_like_udemy/view/teacher/product/remove-product/view-model/delete_course_cubit.dart';
+import 'package:education_app_like_udemy/view/teacher/product/remove-product/view-model/delete_course_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
-import 'package:image_picker/image_picker.dart';
 
 class TeacherCourseDetailPage extends StatelessWidget {
   const TeacherCourseDetailPage({super.key, required this.id});
@@ -26,95 +28,28 @@ class TeacherCourseDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocProvider(
-        create: (context) => TeahcerCourseDetailCubit()..getTeacherCourse(courseId: id),
-        child: BlocBuilder<TeahcerCourseDetailCubit, ITeacherCourseDetailState>(
-          builder: (context, state) {
-            switch (state.status) {
-              case GetCourseEnum.initial:
-                return const Text("data");
-              case GetCourseEnum.loading:
-                return const Text("data");
-              case GetCourseEnum.completed:
-                return TeacherCourseDetailView(model: (state as TeacherCourseDetailCompletedState).response);
-              case GetCourseEnum.error:
-                return const Text("data");
-            }
-          },
+    return SafeArea(
+      child: Scaffold(
+        body: BlocProvider(
+          create: (context) => TeahcerCourseDetailCubit()..getTeacherCourse(courseId: id),
+          child: BlocBuilder<TeahcerCourseDetailCubit, ITeacherCourseDetailState>(
+            builder: (context, state) {
+              switch (state.status) {
+                case GetCourseEnum.initial:
+                  return const Text("data");
+                case GetCourseEnum.loading:
+                  return const Center(child: LottieBigLoadingButton());
+                case GetCourseEnum.completed:
+                  return TeacherCourseDetailView(model: (state as TeacherCourseDetailCompletedState).response);
+                case GetCourseEnum.error:
+                  return const Text("data");
+              }
+            },
+          ),
         ),
       ),
     );
   }
-}
-
-const String path = "https://10.0.2.2:7278/api/Image/add-image";
-postData(Map<String, dynamic> body) async {
-  var dio = Dio();
-  try {
-    FormData formData = FormData.fromMap(body);
-    var response = await dio.post(path, data: formData);
-    return response.data;
-  } catch (e) {
-    print(e);
-  }
-}
-
-class CourseImageService {
-  final Box _token = Hive.box('token');
-
-  changeCourseImage(body) async {
-    final String token = _token.get('myToken');
-    String link = "https://10.0.2.2:7278/api/Image/add-image";
-    var c = await http.post(
-      Uri.parse(link),
-      headers: {
-        HttpHeaders.authorizationHeader: 'Bearer $token',
-      },
-      body: body,
-    );
-    print(c.body);
-  }
-}
-
-Future<void> gonder() async {
-  var myfile = await pickImage();
-  var headers = {
-    'Authorization':
-        'Bearer eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTUxMiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoidGVhY2hlckBnbWFpbC5jb20iLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJUZWFjaGVyIiwiZXhwIjoxNjg0NjY2NzEzfQ.XMl1TjvCLAY3yfyntoUJO5CiLeowHZABNyTQgnZXXoiSGaU_cL64wH6d16xmoYYY58i7ANIeqVjdVBnMwtXVtA'
-  };
-  var request = http.MultipartRequest('POST', Uri.parse('https://10.0.2.2:7278/api/Image/add-image'));
-  request.fields.addAll({'courseId': '1017'});
-  request.files.add(await http.MultipartFile.fromPath('file', myfile));
-  request.headers.addAll(headers);
-
-  http.StreamedResponse response = await request.send();
-
-  if (response.statusCode == 200) {
-    print(await response.stream.bytesToString());
-  } else {
-    print(response.reasonPhrase);
-  }
-}
-
-pickImage() async {
-  final ImagePicker picker = ImagePicker();
-  try {
-    var image = await picker.pickImage(source: ImageSource.gallery);
-    final File file = File(image!.path);
-
-    return image.path;
-    // Map body = {
-    //   "key": file,
-    //   "courseId": widget.model.courseID,
-    // };
-    // CourseImageService().changeCourseImage(body);
-
-    print(file);
-  } catch (e) {
-    print(e);
-  }
-  return null;
 }
 
 class TeacherCourseDetailView extends StatefulWidget {
@@ -155,20 +90,18 @@ class _TeacherCourseDetailViewState extends State<TeacherCourseDetailView> {
             Positioned(
               bottom: 0,
               right: context.width * 0.15,
-              child: MyCourseDetailCard(model: widget.model),
+              child: TeacherCourseDetailCard(model: widget.model),
             ),
             Positioned(
-              top: 20,
-              right: 0,
-              child: IconButton(
-                onPressed: () {
-                  // pickImage();
-                  gonder();
+              top: 10,
+              right: 10,
+              child: FloatingActionButton.small(
+                backgroundColor: Colors.black45,
+                onPressed: () async {
+                  await ChangeImageService().changeImage(widget.model.courseID as int);
+                  context.read<TeahcerCourseDetailCubit>().getTeacherCourse(courseId: widget.model.courseID as int);
                 },
-                icon: const Icon(
-                  Icons.edit_outlined,
-                  size: 40,
-                ),
+                child: const Icon(Icons.photo_library_outlined),
               ),
             ),
           ],
@@ -247,8 +180,8 @@ class CirruculumService {
   }
 }
 
-class MyCourseDetailCard extends StatelessWidget {
-  const MyCourseDetailCard({
+class TeacherCourseDetailCard extends StatelessWidget {
+  const TeacherCourseDetailCard({
     super.key,
     required this.model,
   });
@@ -256,56 +189,70 @@ class MyCourseDetailCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
-      child: Column(
-        children: [
-          SizedBox(
-            height: context.height * 0.2,
-            width: context.width * 0.7,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                TextTitleLarge(text: model.courseName.toString()),
-                TextTitleMedium(text: model.courseDescription.toString()),
-                TextPrice(price: model.coursePrice.toString()),
-
-                // Text(model.courseName.toString()),
-                // Text(model.courseDescription.toString()),
-                // Text(model.coursePrice.toString()),
-                // Text(model.createdDate.toString()),
-                // Text(model.starAvg.toString()),
-                ElevatedButton(
-                  onPressed: () {
-                    // TODO kursu kaldır
-                    // NavigationRoute.goWithInt(RouteEnum.commentPage.rawValue, model.courseID as int);
-                    DeleteCourse().deleteCourseById(model.courseID as int);
-                  },
-                  child: const Text("Kursu Kaldır"),
-                ),
-              ],
+    return BlocProvider(
+      create: (context) => DeleteCourseCubit(),
+      child: Card(
+        elevation: 5,
+        child: Column(
+          children: [
+            SizedBox(
+              height: context.height * 0.2,
+              width: context.width * 0.7,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  TextTitleLarge(text: model.courseName.toString()),
+                  TextTitleMedium(text: model.courseDescription.toString()),
+                  TextPrice(price: model.coursePrice.toString()),
+                  BlocConsumer<DeleteCourseCubit, IDeleteCourseState>(
+                    listener: (context, state) {
+                      if (state is DeleteCourseLodingState) {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return const AlertDialog(
+                              title: Center(child: CircularProgressIndicator()),
+                              content: Text("Kurs kaldırılıyor. Lütfen bekleyiniz."),
+                            );
+                          },
+                        );
+                      } else if (state is DeleteCourseCompletedState) {
+                        NavigationRoute.router.pop();
+                        showDialog(
+                          barrierDismissible: false,
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: const Text("İşlem Başarılı"),
+                              content: const Text("Kursunuz başarıyla kaldırılmıştırs."),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    NavigationRoute.goRouteClear(RouteEnum.teacherHomePage.rawValue);
+                                  },
+                                  child: const Text("Kurslarıma git"),
+                                )
+                              ],
+                            );
+                          },
+                        );
+                      }
+                    },
+                    builder: (context, state) {
+                      return ElevatedButton(
+                        onPressed: () {
+                          context.read<DeleteCourseCubit>().deleteCourse(model.courseID as int);
+                        },
+                        child: const Text("Kursu Kaldır"),
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
-  }
-}
-
-class DeleteCourse {
-  final Box _token = Hive.box('token');
-
-  deleteCourseById(int id) async {
-    final String token = _token.get('myToken');
-    String link = "https://10.0.2.2:7278/api/Course?id=$id";
-    var c = await http.delete(
-      Uri.parse(link),
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        HttpHeaders.authorizationHeader: 'Bearer $token',
-      },
-    );
-    print(c.body);
   }
 }

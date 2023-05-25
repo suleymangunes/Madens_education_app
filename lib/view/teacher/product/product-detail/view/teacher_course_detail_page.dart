@@ -132,14 +132,16 @@ class _TeacherCourseDetailViewState extends State<TeacherCourseDetailView> {
                 margin: EdgeInsets.all(context.lowValue),
                 child: ListTile(
                   leading: Text((index + 1).toString()),
-                  title: Text(widget.model.curriculums?[index].title.toString() ?? ""),
+                  // title: Text(widget.model.curriculums?[index].title.toString() ?? ""),
+                  title: Text(widget.model.curriculums?[index].videoUrl.toString() ?? ""),
                   subtitle: Text(widget.model.curriculums?[index].description.toString() ?? ""),
                   trailing: IconButton(
-                      onPressed: () {
-                        NavigationRoute.goRouteNormalWithParam(RouteEnum.videoPage.rawValue,
-                            widget.model.curriculums?[index].videoUrl.toString() as String);
-                      },
-                      icon: const Icon(Icons.videocam_outlined)),
+                    onPressed: () {
+                      NavigationRoute.goRouteNormalWithParam(
+                          RouteEnum.videoPage.rawValue, widget.model.curriculums?[index].videoUrl.toString() as String);
+                    },
+                    icon: const Icon(Icons.videocam_outlined),
+                  ),
                 ),
               );
             },

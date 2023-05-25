@@ -130,7 +130,7 @@ class _TeacherCourseDetailViewState extends State<TeacherCourseDetailView> {
                 margin: EdgeInsets.all(context.lowValue),
                 child: ListTile(
                   leading: Text((index + 1).toString()),
-                  title: Text(widget.model.curriculums?[index].curriculumId.toString() ?? ""),
+                  title: Text(widget.model.curriculums?[index].title.toString() ?? ""),
                   // title: Text(widget.model.curriculums?[index].videoUrl.toString() ?? ""),
                   subtitle: Text(widget.model.curriculums?[index].description.toString() ?? ""),
                   trailing: Wrap(

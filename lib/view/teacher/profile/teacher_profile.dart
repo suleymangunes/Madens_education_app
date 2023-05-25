@@ -24,7 +24,7 @@ class TeacherProfile extends StatelessWidget {
           ),
           context.smallSpace,
           Text(
-            "Online eğitimde bir uygulamadan fazlası.",
+            "More than an application in online education",
             style: Theme.of(context).textTheme.titleMedium,
           ),
           context.largeSpace,
@@ -35,7 +35,7 @@ class TeacherProfile extends StatelessWidget {
               leading: Icon(
                 Icons.key_off_outlined,
               ),
-              title: Text("Şifre değiştir"),
+              title: Text("Change Password"),
             ),
           ),
           InkWell(
@@ -44,7 +44,7 @@ class TeacherProfile extends StatelessWidget {
               leading: Icon(
                 Icons.delete_forever_outlined,
               ),
-              title: Text("Hesap Sil"),
+              title: Text("Delete Account"),
             ),
           ),
           InkWell(
@@ -58,7 +58,7 @@ class TeacherProfile extends StatelessWidget {
               leading: Icon(
                 Icons.exit_to_app_outlined,
               ),
-              title: Text("Çıkış Yap"),
+              title: Text("Sign Out"),
             ),
           ),
         ],

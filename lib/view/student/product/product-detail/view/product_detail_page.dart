@@ -81,7 +81,7 @@ class ProductDetailScreen extends StatelessWidget {
         ),
         context.smallSpace,
         Text(
-          "Müfredat",
+          "Curriculum",
           style: Theme.of(context).textTheme.titleMedium,
         ),
         Expanded(

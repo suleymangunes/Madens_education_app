@@ -22,7 +22,7 @@ class AddToBasketButton extends StatelessWidget {
                 onPressed: () {
                   context.read<AddBasketCubit>().addToBasket(courseId);
                 },
-                child: const Text("Sepete Ekle"),
+                child: const Text("Add to Basket"),
               );
             case GetCourseEnum.loading:
               return const ElevatedButton(
@@ -38,7 +38,7 @@ class AddToBasketButton extends StatelessWidget {
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
-                  children: const [Text("Sepete Eklendi"), Icon(Icons.done)],
+                  children: const [Text("Added to Basket"), Icon(Icons.done)],
                 ),
               );
             case GetCourseEnum.error:

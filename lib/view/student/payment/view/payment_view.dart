@@ -180,7 +180,7 @@ class _PaymentViewState extends State<PaymentView> {
                               child: Padding(
                                 padding: const EdgeInsets.all(10.0),
                                 child: Text(
-                                  "Satin Al",
+                                  "Pay",
                                   style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.white),
                                 ),
                               ),

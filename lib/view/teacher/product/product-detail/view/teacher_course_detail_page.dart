@@ -108,7 +108,7 @@ class _TeacherCourseDetailViewState extends State<TeacherCourseDetailView> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Müfredat",
+              "Curriculum",
               style: Theme.of(context).textTheme.titleMedium,
             ),
             TextButton(
@@ -116,7 +116,7 @@ class _TeacherCourseDetailViewState extends State<TeacherCourseDetailView> {
                 // CirruculumService().addCirruculumByCourseId(widget.model.courseID as int);
                 NavigationRoute.goWithInt(RouteEnum.addCurriculumPage.rawValue, widget.model.courseID as int);
               },
-              child: const Text("Ekle"),
+              child: const Text("Add a New One"),
             ),
           ],
         ),
@@ -245,7 +245,7 @@ class TeacherCourseDetailCard extends StatelessWidget {
                         onPressed: () {
                           context.read<DeleteCourseCubit>().deleteCourse(model.courseID as int);
                         },
-                        child: const Text("Kursu Kaldır"),
+                        child: const Text("Remove Course"),
                       );
                     },
                   ),

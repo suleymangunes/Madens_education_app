@@ -41,6 +41,12 @@ class _ChewieDemoState extends State<ChewieDemo> {
 
   void _createChewieController() {
     _chewieController = ChewieController(
+      materialProgressColors: ChewieProgressColors(
+        backgroundColor: const Color.fromRGBO(200, 200, 200, 0.5),
+        bufferedColor: const Color.fromRGBO(30, 30, 200, 0.2),
+        handleColor: const Color.fromRGBO(200, 200, 200, 1.0),
+        playedColor: const Color.fromRGBO(255, 0, 0, 0.7),
+      ),
       videoPlayerController: _videoPlayerController1,
       additionalOptions: (context) {
         return <OptionItem>[

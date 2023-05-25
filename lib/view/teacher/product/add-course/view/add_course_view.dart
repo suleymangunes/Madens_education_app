@@ -163,7 +163,7 @@ class _AddCourseViewState extends State<AddCourseView> {
                           context.read<AddCourseCubit>().addCourse(addCourseModel: a);
                         }
                       },
-                      child: const Text("Kurs Ekle"),
+                      child: const Text("Add Course"),
                     );
                   },
                 )

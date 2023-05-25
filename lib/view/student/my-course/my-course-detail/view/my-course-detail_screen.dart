@@ -79,7 +79,7 @@ class MyCourseDetailCompletedScreen extends StatelessWidget {
         ),
         context.smallSpace,
         Text(
-          "Müfredat",
+          "Curriculum",
           style: Theme.of(context).textTheme.titleMedium,
         ),
         Expanded(
@@ -136,7 +136,7 @@ class MyCourseDetailCard extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const TextBodyMedium(text: "İlerleme Durumu: "),
+                    const TextBodyMedium(text: "Progress Status: "),
                     Image.asset(
                       "assets/images/progress.png",
                       height: 60,

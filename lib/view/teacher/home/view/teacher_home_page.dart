@@ -7,6 +7,8 @@ import 'package:education_app_like_udemy/view/teacher/home/view-model/bottom-nav
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/init/theme/light/light_theme_custom.dart';
+
 class TeacherHomePage extends StatelessWidget {
   const TeacherHomePage({super.key});
 
@@ -26,17 +28,22 @@ class TeacherHomePage extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
+        backgroundColor: LightThemeColors.scarlet,
         onPressed: () {
           NavigationRoute.goRouteNormal(RouteEnum.addCourseView.rawValue);
         },
-        child: const Icon(Icons.add_outlined),
+        child: const Icon(
+          Icons.add_outlined,
+          size: 30,
+        ),
       ),
     );
   }
 
   BottomNavigationBar _bottomNavBar(int state, BuildContext context) {
     return BottomNavigationBar(
-      elevation: 0,
+      fixedColor: LightThemeColors.scarlet,
+      type: BottomNavigationBarType.fixed,
       currentIndex: state,
       onTap: (value) {
         context.read<BottomNavIndexCubitTeacher>().changeBottomIndex(value);

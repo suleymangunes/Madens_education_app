@@ -108,7 +108,7 @@ class BasketListBuilder extends StatelessWidget {
                 onPressed: () {
                   NavigationRoute.goRouteNormal(RouteEnum.payment.rawValue);
                 },
-                child: const TextMediumTitle(text: "Satın Al"),
+                child: const TextMediumTitle(text: "Order"),
               ),
             ],
           ),
@@ -165,7 +165,7 @@ class BasketCard extends StatelessWidget {
                     // await Future.delayed(const Duration(milliseconds: 200));
                     context.read<GetBasketCubit>().getBasket();
                   },
-                  child: const Text("Sepetten Kaldır"),
+                  child: const Text("Remove the Basket"),
                 ),
               ],
             ),

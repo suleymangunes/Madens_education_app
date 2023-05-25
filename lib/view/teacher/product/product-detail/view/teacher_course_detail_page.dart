@@ -1,5 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-
 import 'package:education_app_like_udemy/core/components/text/text_title_large_normal.dart';
 import 'package:education_app_like_udemy/core/components/text/text_title_medium.dart';
 import 'package:education_app_like_udemy/core/extension/context/context_extension.dart';
@@ -132,15 +130,46 @@ class _TeacherCourseDetailViewState extends State<TeacherCourseDetailView> {
                 margin: EdgeInsets.all(context.lowValue),
                 child: ListTile(
                   leading: Text((index + 1).toString()),
-                  // title: Text(widget.model.curriculums?[index].title.toString() ?? ""),
-                  title: Text(widget.model.curriculums?[index].videoUrl.toString() ?? ""),
+                  title: Text(widget.model.curriculums?[index].curriculumId.toString() ?? ""),
+                  // title: Text(widget.model.curriculums?[index].videoUrl.toString() ?? ""),
                   subtitle: Text(widget.model.curriculums?[index].description.toString() ?? ""),
-                  trailing: IconButton(
-                    onPressed: () {
-                      NavigationRoute.goRouteNormalWithParam(
-                          RouteEnum.videoPage.rawValue, widget.model.curriculums?[index].videoUrl.toString() as String);
-                    },
-                    icon: const Icon(Icons.videocam_outlined),
+                  trailing: Wrap(
+                    children: [
+                      IconButton(
+                        onPressed: () async {
+                          await AddVideoService().addVideo(widget.model.curriculums?[index].curriculumId as int);
+                          context
+                              .read<TeahcerCourseDetailCubit>()
+                              .getTeacherCourse(courseId: widget.model.courseID as int);
+                          showDialog(
+                            barrierDismissible: false,
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: const Text("İşlem Başarılı"),
+                                content: const Text("Video müfredata eklenmiştir."),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      NavigationRoute.router.pop();
+                                    },
+                                    child: const Text("Tamam"),
+                                  )
+                                ],
+                              );
+                            },
+                          );
+                        },
+                        icon: const Icon(Icons.video_call),
+                      ),
+                      IconButton(
+                        onPressed: () {
+                          NavigationRoute.goRouteNormalWithParam(RouteEnum.videoPage.rawValue,
+                              widget.model.curriculums?[index].videoUrl.toString() as String);
+                        },
+                        icon: const Icon(Icons.videocam_outlined),
+                      ),
+                    ],
                   ),
                 ),
               );

@@ -23,3 +23,24 @@ class ChangeImageService {
     }
   }
 }
+
+class AddVideoService {
+  final Box _token = Hive.box('token');
+  Future<void> addVideo(int id) async {
+    final String token = _token.get('myToken');
+
+    var myfile = await PickVideo().pickVideo();
+    var headers = {'Authorization': 'Bearer $token'};
+    var request = http.MultipartRequest('POST', Uri.parse('https://10.0.2.2:7278/api/Cloud/addVideo/$id'));
+    request.files.add(await http.MultipartFile.fromPath('file', myfile));
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+    } else {
+      print(response.reasonPhrase);
+    }
+  }
+}

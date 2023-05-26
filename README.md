@@ -1,5 +1,92 @@
 # MADENS - Education App Like Udemy
 
+Madens is an application where instructors add courses and students can purchase this course.
+Mobile part is written with Flutter and backend part is written with .net.
+
+### Application Features
+
+#### As Student
+- Login, Register
+- Search Course
+- Add Course To Basket
+- Remove Course To Basket
+- Buy Courses
+- Watch Your Purchased Videos
+- Change Password
+- Delete Account
+
+#### As Teacher
+- Login, Register
+- Add Course
+- Change Courses Image
+- Add Curriculum to Course
+- Add Video to Curriculum
+- Remove Course
+- Change Password
+- Delete Account
+
+### Application Structure
+
+#### Architecture
+
+- Mvvm, Mvc
+
+State Management
+
+- Cubit (bloc)
+
+Routing
+
+- Go router
+
+Service
+
+- Http, Dio
+
+#### Features
+
+- Splash Screen
+
+- Onboarding
+
+- Change Theme
+
+- Localization
+
+- Caching
+
+#### Requirements
+
+Flutter ```3.7.11```
+
+Dart ```2.19.6```
+
+##### Packages
+
+Icons - ```cupertino_icons: ^1.0.2```
+
+Onboarding - ```introduction_screen: ^3.1.4```
+
+Caching - ```hive: ^2.2.3, hive_flutter: ^1.1.0```
+
+Localization - ```easy_localization: ^3.0.1```
+
+State management - ```flutter_bloc: ^8.1.2```
+
+Video - ```video_player: ^2.6.1, chewie: ^1.4.0```
+
+Credit Card - ```flutter_credit_card: ^3.0.6```
+
+Pick File - ```image_picker: ^0.8.7+5```
+
+Navigation ```go_router: - ^6.5.7```
+
+Service - ```dio: ^5.1.2, http: ^0.13.5```
+
+Animation - ```lottie: ^2.3.2```
+
+
+
 ## Light Theme
 
 <br>

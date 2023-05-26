@@ -66,6 +66,8 @@ dependencies:
 
   # image
   image_picker: ^0.8.7+5
+
+  # service
   dio: ^5.1.2
 
 dev_dependencies:

@@ -11,7 +11,6 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(role);
     return MultiBlocProvider(
         providers: [
           BlocProvider(create: (context) => RegisterCubit()),

@@ -23,8 +23,6 @@ class RegisterService {
       ),
     );
     final json = jsonDecode(response.body);
-    print(json);
-    print("ogretmen kaydoldu");
     return RegisterResponseModel.fromJson(json);
   }
 
@@ -37,8 +35,6 @@ class RegisterService {
       ),
     );
     final json = jsonDecode(response.body);
-    print(json);
-    print("ogrenci kaydoldu");
     return RegisterResponseModel.fromJson(json);
   }
 }

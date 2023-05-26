@@ -23,8 +23,6 @@ class LoginService {
       ),
     );
     final json = jsonDecode(response.body);
-    print(json);
-    print("ogretmen giris yapti");
     return LoginResponseModel.fromJson(json);
   }
 

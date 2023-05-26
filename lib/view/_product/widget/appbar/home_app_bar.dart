@@ -1,5 +1,6 @@
 import 'package:education_app_like_udemy/core/components/text/text_title_medium_slim.dart';
 import 'package:education_app_like_udemy/core/constants/icon/icon_constants.dart';
+import 'package:education_app_like_udemy/core/constants/string/string_constants.dart';
 import 'package:education_app_like_udemy/core/extension/border/border_extension.dart';
 import 'package:education_app_like_udemy/core/extension/context/context_extension.dart';
 import 'package:education_app_like_udemy/core/extension/padding/padding_extension.dart';
@@ -42,7 +43,7 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
       enabled: false,
       decoration: InputDecoration(
         border: OutlineInputBorder(borderRadius: context.searchBorder),
-        label: const TextTitleMediumSlim(text: "Search Something..."),
+        label: const TextTitleMediumSlim(text: StringConstants.searchSomething),
         suffixIcon: IconConstants.search,
       ),
     );

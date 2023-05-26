@@ -1,3 +1,4 @@
+import 'package:education_app_like_udemy/core/constants/string/string_constants.dart';
 import 'package:education_app_like_udemy/core/init/cache/login/login_caching.dart';
 import 'package:education_app_like_udemy/view/auth/login/service/login_service.dart';
 import 'package:education_app_like_udemy/view/auth/login/view-model/login/login_state.dart';
@@ -9,7 +10,7 @@ class LoginCubit extends Cubit<ILoginState> {
   Future<void> login({required String email, required String password, required role}) async {
     try {
       emit(LoadingLoginState());
-      if (role == "teacher") {
+      if (role == StringConstants.teacher) {
         var response = await LoginService(email: email, password: password).loginTeacher();
         if (response.data == null) {
           emit(ErrorLoginState(errorMessage: response));
@@ -17,7 +18,7 @@ class LoginCubit extends Cubit<ILoginState> {
           LoginCaching.changeRole(role);
           emit(CompletedLoginState(tokenData: response));
         }
-      } else if (role == "student") {
+      } else if (role == StringConstants.student) {
         var response = await LoginService(email: email, password: password).loginStudent();
         if (response.data == null) {
           emit(ErrorLoginState(errorMessage: response));

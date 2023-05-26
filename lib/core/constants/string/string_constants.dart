@@ -32,4 +32,8 @@ class StringConstants {
   static const String home = "Home";
   static const String basket = "Basket";
   static const String person = "Person";
+  static const String searchSomething = "Search Something...";
+  static const String student = "student";
+  static const String nullVaule = "null";
+  static const String teacher = "teacher";
 }

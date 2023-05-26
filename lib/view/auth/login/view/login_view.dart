@@ -144,10 +144,10 @@ class _LoginViewState extends State<LoginView> {
     if (state.status == LoginEnum.completed) {
       // context.read<WaitedLoginCubit>().readOnlyFalse();
       if (state is CompletedLoginState) {
-        LoginCaching.setToken(state.tokenData.data ?? "null");
+        LoginCaching.setToken(state.tokenData.data ?? StringConstants.nullVaule);
         LoginCaching.signin();
       }
-      if (widget.role == "student") {
+      if (widget.role == StringConstants.student) {
         NavigationRoute.goRouteClear(RouteEnum.studentHomePage.rawValue);
       } else {
         NavigationRoute.goRouteClear(RouteEnum.teacherHomePage.rawValue);

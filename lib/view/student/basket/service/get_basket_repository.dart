@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:education_app_like_udemy/product/constants/api/api_constants.dart';
 import 'package:education_app_like_udemy/view/student/basket/model/basket_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
@@ -9,7 +10,7 @@ class GetBasketRepository {
 
   Future<List<Courses>?>? getBasket() async {
     final token = _token.get('myToken');
-    const String link = "https://10.0.2.2:7278/api/Basket";
+    const String link = "${ApiConstants.baseUrl}api/Basket";
 
     var c = await http.get(
       Uri.parse(link),
@@ -37,7 +38,7 @@ class GetBasketRepository {
 
   Future<void> removeItemFromBasket(int courseId) async {
     final token = _token.get('myToken');
-    final String link = "https://10.0.2.2:7278/api/Basket/$courseId";
+    final String link = "${ApiConstants.baseUrl}api/Basket/$courseId";
     await http.delete(
       Uri.parse(link),
       headers: {

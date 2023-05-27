@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:education_app_like_udemy/product/constants/api/api_constants.dart';
 import 'package:education_app_like_udemy/view/student/home/model/course_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
@@ -11,7 +12,7 @@ class CourseRepository {
   Future<List<Courses>> getAllCourses() async {
     final token = _token.get('myToken');
     print(token);
-    const String link = "https://10.0.2.2:7278/api/Course/GetAll?page=1";
+    const String link = "${ApiConstants.baseUrl}api/Course/GetAll?page=1";
     print("bu kisma kadar sorun yok");
     var c = await http.get(
       Uri.parse(link),

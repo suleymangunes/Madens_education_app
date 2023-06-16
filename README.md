@@ -1,7 +1,16 @@
-# MADENS - Education App Like Udemy
+# MADENS - Education App Like Udemy Built Flutter
 
 Madens is an application where instructors add courses and students can purchase this course.
 Mobile part is written with Flutter and backend part is written with .net.
+
+<br>
+<p float="left">
+<img hspace="5" src="assets\readme-files\light-theme\home-student.png" width="150" />
+<img hspace="5" src="assets\readme-files\black-theme\product-black.png" width="150" />
+<img hspace="5" src="assets\readme-files\light-theme\payment.png" width="150" />
+<img hspace="5" src="assets\readme-files\black-theme\profile-black.png" width="150" />
+</p>
+<br>
 
 ### Application Features
 
